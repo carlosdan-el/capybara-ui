@@ -2,13 +2,13 @@ import { useState, useMemo } from 'react';
 
 const MAX_BUTTONS_PER_VIEW = 7;
 
-export const usePagination = (data: any[], rowsPerPage: number) => {
+export const usePagination = (dataLength: number, rowsPerPage: number) => {
     const [currentPage, setCurrentPage] = useState(1);
     const maxPages = useMemo(() => {
-        return Math.ceil(data.length / rowsPerPage);
-    }, [data, rowsPerPage]);
+        return Math.ceil(dataLength / rowsPerPage);
+    }, [dataLength, rowsPerPage]);
     const pages = useMemo(() => {
-        if (data && data.length > 0) {
+        if (dataLength > 0) {
             if (maxPages <= 1) return [];
             if (maxPages <= 5) return Array.from({ length: maxPages }).map((_, i) => i + 1);
             if (currentPage < 5) return Array.from({ length: MAX_BUTTONS_PER_VIEW }).map((_, i) => {
@@ -67,15 +67,15 @@ export const usePagination = (data: any[], rowsPerPage: number) => {
             });
         }
         return [];
-    }, [data, currentPage, rowsPerPage]);
-    const currentData = useMemo(() => {
-        if (data && data.length > 0) {
+    }, [dataLength, currentPage, rowsPerPage]);
+    const { startIndex, endIndex }: any = useMemo(() => {
+        if (dataLength > 0) {
             const startIndex = (currentPage - 1) * rowsPerPage;
             const endIndex = startIndex + rowsPerPage;
-            return data.slice(startIndex, endIndex);
+            return { startIndex, endIndex };
         }
         return [];
-    }, [data, currentPage, rowsPerPage]);
+    }, [dataLength, currentPage, rowsPerPage]);
     const handlePreviousPage = (): void => {
         if (currentPage > 1) setCurrentPage(current => current - 1);
     };
@@ -85,12 +85,12 @@ export const usePagination = (data: any[], rowsPerPage: number) => {
     const handlePageChange = (page: number): void => {
         if (page >= 1 && page <= maxPages) setCurrentPage(page);
     };
-
     return {
         maxPages,
         currentPage,
         pages,
-        currentData,
+        startIndex,
+        endIndex,
         handlePreviousPage,
         handleNextPage,
         handlePageChange

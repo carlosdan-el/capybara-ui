@@ -2,17 +2,21 @@ import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Table, TableProps } from './table';
 
+// variant
+
 const COLUMNS = [
     { key: ['id'], name: '#' },
-    { key: ['product_name'], name: 'Product Name' },
+    { key: ['product_name'], name: 'Product Name', sortable: true },
     { key: ['color'], name: 'Color' },
     { key: ['category'], name: 'Category' },
     {
-        key: ['price'], name: 'Price', formatter: (row: any) => Intl.NumberFormat('pt-BR', {
+        key: ['price'], name: 'Price',
+        formatter: (row: any) => Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL',
             minimumFractionDigits: 2
-        }).format(row.price)
+        }).format(row.price),
+        sortable: true
     }
 ];
 const DATA = [
