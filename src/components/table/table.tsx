@@ -12,6 +12,7 @@ export interface TableProps {
     rowsPerPage?: number
     searchable?: boolean
     fixed?: boolean
+    viewOnly?: boolean
 }
 
 export enum ETableColumnOrder {
@@ -41,7 +42,8 @@ export const Table: FC<TableProps> = ({
     emptyDataText,
     rowsPerPage = 10,
     searchable = false,
-    fixed = false
+    fixed = false,
+    viewOnly = false
 }: TableProps) => {
     const [itemsPerPage, setItemsPerPage] = useState(rowsPerPage);
     const {
@@ -71,43 +73,45 @@ export const Table: FC<TableProps> = ({
 
     return (
         <div className="w-full">
-            <div className="w-full flex space-x-4 justify-end mb-4">
-                <div className="w-full flex space-x-4 justify-end">
-                    {searchable &&
-                        <div className="relative flex-1">
-                            <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
-                            <input
-                                type="text"
-                                id="search-input"
-                                placeholder="Pesquisar"
-                                className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4 outline-none"
-                            />
+            {!viewOnly &&
+                <div className="w-full flex space-x-4 justify-end mb-4">
+                    <div className="w-full flex space-x-4 justify-end">
+                        {searchable &&
+                            <div className="relative flex-1">
+                                <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
+                                <input
+                                    type="text"
+                                    id="search-input"
+                                    placeholder="Pesquisar"
+                                    className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4 outline-none"
+                                />
+                            </div>
+                        }
+                        <div className="flex flex-nowrap items-center space-x-2 text-sm text-gray-400">
+                            <span>Exibindo</span>
+                            <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2">
+                                <option value={10} title="10 itens por página">10</option>
+                                <option value={50} title="50 itens por página">50</option>
+                                <option value={75} title="75 itens por página">75</option>
+                                <option value={100} title="100 itens por página">100</option>
+                            </select>
+                            <span>de {data.length} resultados</span>
                         </div>
-                    }
-                    <div className="flex flex-nowrap items-center space-x-2 text-sm text-gray-400">
-                        <span>Exibindo</span>
-                        <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2">
-                            <option value={10} title="10 itens por página">10</option>
-                            <option value={50} title="50 itens por página">50</option>
-                            <option value={75} title="75 itens por página">75</option>
-                            <option value={100} title="100 itens por página">100</option>
-                        </select>
-                        <span>de {data.length} resultados</span>
+                        <Menu>
+                            <Menu.Button className="px-2 -py-1 text-sm font-medium text-center flex items-center rounded-lg border border-transparent hover:border-gray-200">
+                                <LuMoreVertical />
+                            </Menu.Button>
+                            <Menu.Items className="flex flex-col absolute right-0 top-12 bg-white shadow-md border rounded-xl p-4">
+                                <Menu.Item>
+                                    <button onClick={() => { }} type="button" className="px-3 py-2 text-sm font-medium text-center flex items-center">
+                                        <LuDownload className="mr-2" /> Download
+                                    </button>
+                                </Menu.Item>
+                            </Menu.Items>
+                        </Menu>
                     </div>
-                    <Menu>
-                        <Menu.Button className="px-2 -py-1 text-sm font-medium text-center flex items-center rounded-lg border border-transparent hover:border-gray-200">
-                            <LuMoreVertical />
-                        </Menu.Button>
-                        <Menu.Items className="flex flex-col absolute right-0 top-12 bg-white shadow-md border rounded-xl p-4">
-                            <Menu.Item>
-                                <button onClick={() => { }} type="button" className="px-3 py-2 text-sm font-medium text-center flex items-center">
-                                    <LuDownload className="mr-2" /> Download
-                                </button>
-                            </Menu.Item>
-                        </Menu.Items>
-                    </Menu>
                 </div>
-            </div>
+            }
             <div className="w-full overflow-x-auto">
                 <table className={`w-full text-sm text-left text-gray-500 ${fixed ?? 'table-fixed'}`}>
                     <thead className="text-green-700 capitalize bg-green-50 whitespace-nowrap">
