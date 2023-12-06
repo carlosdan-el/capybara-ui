@@ -1,13 +1,15 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Table, TableProps } from './table';
+import { PRODUCTS_MOCK } from '../../mocks';
 
 // variant
 
 const COLUMNS = [
     { key: ['id'], name: '#' },
-    { key: ['product_name'], name: 'Product Name', sortable: true },
-    { key: ['color'], name: 'Color' },
+    { key: ['title'], name: 'Product Name', sortable: true },
+    { key: ['stock'], name: 'Stock Quantity' },
+    { key: ['brand'], name: 'Brand' },
     { key: ['category'], name: 'Category' },
     {
         key: ['price'], name: 'Price',
@@ -17,29 +19,6 @@ const COLUMNS = [
             minimumFractionDigits: 2
         }).format(row.price),
         sortable: true
-    }
-];
-const DATA = [
-    {
-        id: 1,
-        product_name: 'Apple MacBook Pro 17"',
-        color: 'Silver',
-        category: 'Laptop',
-        price: 2999
-    },
-    {
-        id: 2,
-        product_name: 'Microsoft Surface Pro',
-        color: 'White',
-        category: 'Laptop PC',
-        price: 1999
-    },
-    {
-        id: 3,
-        product_name: 'Magic Mouse 2',
-        color: 'Black',
-        category: 'Accessories',
-        price: 99
     }
 ];
 
@@ -66,13 +45,13 @@ export const Default = Template.bind({});
 
 Default.args = {
     columns: COLUMNS,
-    data: DATA
+    data: PRODUCTS_MOCK
 };
 
-export const WithExportOption = Template.bind({});
+export const WithSearchOption = Template.bind({});
 
-WithExportOption.args = {
+WithSearchOption.args = {
     columns: COLUMNS,
-    data: DATA,
-    enableExport: true
+    data: PRODUCTS_MOCK,
+    searchable: true
 };

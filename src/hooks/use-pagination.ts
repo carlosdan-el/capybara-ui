@@ -5,7 +5,9 @@ const MAX_BUTTONS_PER_VIEW = 7;
 export const usePagination = (dataLength: number, rowsPerPage: number) => {
     const [currentPage, setCurrentPage] = useState(1);
     const maxPages = useMemo(() => {
-        return Math.ceil(dataLength / rowsPerPage);
+        const totalPages = Math.ceil(dataLength / rowsPerPage);
+        if (totalPages < currentPage) setCurrentPage(totalPages);
+        return totalPages;
     }, [dataLength, rowsPerPage]);
     const pages = useMemo(() => {
         if (dataLength > 0) {

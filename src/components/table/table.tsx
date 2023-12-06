@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { usePagination } from '../../hooks/use-pagination';
 import { getNestedValues, sortData } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp } from 'react-icons/lu';
@@ -10,6 +10,8 @@ export interface TableProps {
     isLoading: boolean
     emptyDataText?: string
     rowsPerPage?: number
+    searchable?: boolean
+    fixed?: boolean
 }
 
 export enum ETableColumnOrder {
@@ -38,7 +40,10 @@ export const Table: FC<TableProps> = ({
     data,
     emptyDataText,
     rowsPerPage = 10,
+    searchable = false,
+    fixed = false
 }: TableProps) => {
+    const [itemsPerPage, setItemsPerPage] = useState(rowsPerPage);
     const {
         pages,
         currentPage,
@@ -47,36 +52,47 @@ export const Table: FC<TableProps> = ({
         handlePageChange,
         startIndex,
         endIndex
-    } = usePagination(data.length, rowsPerPage);
+    } = usePagination(data.length, itemsPerPage);
     const [tableData, setTableData] = useState(data.slice(startIndex, endIndex));
     const [tableColumns, setTableColumns] = useState(columns);
     const emptyText = emptyDataText ? emptyDataText : 'Não existem dados para exibição';
     const handleSortData = (column: TableColumn) => {
         if (column.sortable) {
-            const { columns: sortedColumn, data: sortedData } = sortData(column.key, tableColumns, tableData);
+            const { columns: sortedColumn, data: sortedData } = sortData(column.key, tableColumns, data);
             setTableColumns(sortedColumn);
-            setTableData(sortedData);
+            setTableData(sortedData.slice(startIndex, endIndex));
         }
         return undefined;
     };
 
+    useEffect(() => {
+        setTableData(data.slice(startIndex, endIndex));
+    }, [startIndex, endIndex]);
+
     return (
         <div className="w-full">
             <div className="w-full flex space-x-4 justify-end mb-4">
-                <div className="w-full flex space-x-4">
-                    <div className="relative flex-1">
-                        <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
-                        <input type="text" id="default-input" className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4" />
-                    </div>
-                    <div className="flex flex-nowrap items-center space-x-2 text-sm">
+                <div className="w-full flex space-x-4 justify-end">
+                    {searchable &&
+                        <div className="relative flex-1">
+                            <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
+                            <input
+                                type="text"
+                                id="search-input"
+                                placeholder="Pesquisar"
+                                className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4 outline-none"
+                            />
+                        </div>
+                    }
+                    <div className="flex flex-nowrap items-center space-x-2 text-sm text-gray-400">
                         <span>Exibindo</span>
-                        <select className="bg-green-50 border border-gray-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5">
-                            <option title="10 itens por página">10</option>
-                            <option title="50 itens por página">50</option>
-                            <option title="75 itens por página">75</option>
-                            <option title="100 itens por página">100</option>
+                        <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2">
+                            <option value={10} title="10 itens por página">10</option>
+                            <option value={50} title="50 itens por página">50</option>
+                            <option value={75} title="75 itens por página">75</option>
+                            <option value={100} title="100 itens por página">100</option>
                         </select>
-                        <span>de {tableData.length} resultados</span>
+                        <span>de {data.length} resultados</span>
                     </div>
                     <Menu>
                         <Menu.Button className="px-2 -py-1 text-sm font-medium text-center flex items-center rounded-lg border border-transparent hover:border-gray-200">
@@ -93,25 +109,19 @@ export const Table: FC<TableProps> = ({
                 </div>
             </div>
             <div className="w-full overflow-x-auto">
-                <table className="w-full text-sm text-left text-gray-500">
+                <table className={`w-full text-sm text-left text-gray-500 ${fixed ?? 'table-fixed'}`}>
                     <thead className="text-green-700 capitalize bg-green-50 whitespace-nowrap">
                         <tr>
                             {tableColumns.map((column, index) => {
                                 if (column.visible !== false) {
                                     return (
                                         <th key={index} scope="col" className="py-3 px-6 whitespace-nowrap" onClick={() => handleSortData(column)}>
-                                            <div className="flex items-center justify-between">
+                                            <div className="flex items-center justify-between space-x-4">
                                                 <span>{column.name}</span>
                                                 {column.sortable &&
                                                     <div className="flex flex-col items-center justify-around">
-                                                        <LuChevronUp
-                                                            size={16}
-                                                            className={`${column?.sortableOrder === 'asc' ? 'text-green-700' : 'text-gray-300'}`}
-                                                        />
-                                                        <LuChevronDown
-                                                            size={16}
-                                                            className={`-mt-2 ${column?.sortableOrder === 'desc' ? 'text-green-700' : 'text-gray-300'}`}
-                                                        />
+                                                        <LuChevronUp size={16} className={column.sortableOrder === 'asc' ? 'text-green-700' : 'text-gray-300'} />
+                                                        <LuChevronDown size={16} className={column.sortableOrder === 'desc' ? '-mt-1.5 text-green-700' : '-mt-1.5 text-gray-300'} />
                                                     </div>
                                                 }
                                             </div>
@@ -135,7 +145,7 @@ export const Table: FC<TableProps> = ({
                                                             <td
                                                                 scope="row"
                                                                 key={colIndex}
-                                                                className={`${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"]'}`}
+                                                                className={`${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                             >
                                                                 <span>
                                                                     {getValue(column, item)}
@@ -146,7 +156,7 @@ export const Table: FC<TableProps> = ({
                                                     return (
                                                         <td
                                                             key={colIndex}
-                                                            className={`${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"]'}`}
+                                                            className={`${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                         >
                                                             <span>
                                                                 {getValue(column, item)}
@@ -174,7 +184,7 @@ export const Table: FC<TableProps> = ({
                     </div>
                 }
             </div>
-            {(!isLoading && data.length > rowsPerPage) &&
+            {(!isLoading && data.length > itemsPerPage) &&
                 <nav className="w-full flex justify-end mt-6">
                     <ul className="inline-flex -space-x-px">
                         <li>
