@@ -67,9 +67,9 @@ export const Table: FC<TableProps> = ({
         return undefined;
     };
 
-    useEffect(() => {
-        setTableData(data.slice(startIndex, endIndex));
-    }, [startIndex, endIndex]);
+    useEffect(() => setTableColumns(columns), [columns]);
+    useEffect(() => setTableData(data.slice(startIndex, endIndex)), [data]);
+    useEffect(() => setTableData(data.slice(startIndex, endIndex)), [startIndex, endIndex]);
 
     return (
         <div className="w-full">
