@@ -1,17 +1,15 @@
 import { useState, useMemo } from 'react';
-import { TableColumn } from "../components/table/table";
-import { sortData } from '../components/table/utils';
 
 const MAX_BUTTONS_PER_VIEW = 7;
 
-export const usePagination = (columns: TableColumn[], data: any[], rowsPerPage: number) => {
-    const [currentPage, setCurrentPage] = useState(1);
+export const usePagination = (data: any[], rowsPerPage: number) => {
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const maxPages = useMemo(() => {
         const totalPages = Math.ceil(data.length / rowsPerPage);
-        if (totalPages < currentPage) setCurrentPage(totalPages);
+        if (currentPage > 1 && totalPages < currentPage) setCurrentPage(totalPages);
         return totalPages;
     }, [data, rowsPerPage]);
-    const pages = useMemo(() => {
+    const pagination = useMemo(() => {
         if (data.length > 0) {
             if (maxPages <= 1) return [];
             if (maxPages <= 5) return Array.from({ length: maxPages }).map((_, i) => i + 1);
@@ -80,8 +78,6 @@ export const usePagination = (columns: TableColumn[], data: any[], rowsPerPage: 
         }
         return [];
     }, [data, currentPage, rowsPerPage]);
-    const [tableColumns, setTableColumns] = useState(columns);
-    const [tableData, setTableData] = useState(data.slice(startIndex, endIndex));
     const handlePreviousPage = (): void => {
         if (currentPage > 1) setCurrentPage(current => current - 1);
     };
@@ -91,23 +87,15 @@ export const usePagination = (columns: TableColumn[], data: any[], rowsPerPage: 
     const handlePageChange = (page: number): void => {
         if (page >= 1 && page <= maxPages) setCurrentPage(page);
     };
-    const handleSortData = (column: TableColumn) => {
-        if (column.sortable) {
-            const { columns: sortedColumn, data: sortedData } = sortData(column.key, tableColumns, data);
-            setTableColumns(sortedColumn);
-            setTableData(sortedData.slice(startIndex, endIndex));
-        }
-        return undefined;
-    };
+
     return {
         maxPages,
         currentPage,
-        tableColumns,
-        tableData,
-        pages,
+        pagination,
+        startIndex,
+        endIndex,
         handlePreviousPage,
         handleNextPage,
-        handlePageChange,
-        handleSortData
+        handlePageChange
     };
 };

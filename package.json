@@ -1,50 +1,50 @@
 {
-  "name": "avine-react-components",
-  "version": "0.1.22",
-  "license": "MIT",
-  "description": "",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=12"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup src --clean --out-dir dist",
-    "prepare": "tsup src --clean --out-dir dist",
-    "deploy": "npm version patch && npm publish",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "author": "Carlos Daniel",
-  "peerDependencies": {
-    "react": ">=16"
-  },
-  "devDependencies": {
-    "@headlessui/react": "^1.7.17",
-    "@storybook/addon-essentials": "^7.6.4",
-    "@storybook/addon-interactions": "^7.6.4",
-    "@storybook/addon-links": "^7.6.4",
-    "@storybook/addon-onboarding": "^1.0.9",
-    "@storybook/addon-styling-webpack": "^0.0.5",
-    "@storybook/blocks": "^7.6.4",
-    "@storybook/react": "^7.6.4",
-    "@storybook/react-vite": "^7.6.4",
-    "@storybook/test": "^7.6.4",
-    "@types/react": "^18.2.42",
-    "@types/react-dom": "^18.2.17",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.12.0",
-    "storybook": "^7.6.4",
-    "tailwindcss": "^3.3.6",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
-  }
+    "name": "avine-react-components",
+    "version": "0.1.22",
+    "license": "MIT",
+    "description": "",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=12"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "tsup src --clean --out-dir dist",
+        "prepare": "tsup src --clean --out-dir dist",
+        "deploy": "npm version patch && npm publish",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
+    },
+    "author": "Carlos Daniel",
+    "peerDependencies": {
+        "react": ">=16"
+    },
+    "devDependencies": {
+        "@headlessui/react": "^1.7.17",
+        "@storybook/addon-essentials": "^7.6.4",
+        "@storybook/addon-interactions": "^7.6.4",
+        "@storybook/addon-links": "^7.6.4",
+        "@storybook/addon-onboarding": "^1.0.9",
+        "@storybook/addon-styling-webpack": "^0.0.5",
+        "@storybook/blocks": "^7.6.4",
+        "@storybook/react": "^7.6.4",
+        "@storybook/react-vite": "^7.6.4",
+        "@storybook/test": "^7.6.4",
+        "@types/react": "^18.2.42",
+        "@types/react-dom": "^18.2.17",
+        "autoprefixer": "^10.4.16",
+        "postcss": "^8.4.32",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.12.0",
+        "storybook": "^7.6.4",
+        "tailwindcss": "^3.3.6",
+        "tsup": "^8.0.1",
+        "typescript": "^5.3.3"
+    }
 }
