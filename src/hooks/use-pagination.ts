@@ -1,6 +1,6 @@
-import { TableColumn } from 'components/table/table';
-import { sortData } from 'components/table/utils';
 import { useState, useMemo } from 'react';
+import { TableColumn } from "../components/table/table";
+import { sortData } from '../components/table/utils';
 
 const MAX_BUTTONS_PER_VIEW = 7;
 
