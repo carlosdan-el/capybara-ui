@@ -9,6 +9,9 @@
         "dist",
         "src"
     ],
+    "engines": {
+        "node": ">=12"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "tsup ./src",
@@ -16,10 +19,15 @@
         "deploy": "npm version patch && npm publish"
     },
     "author": "Carlos Daniel",
+    "peerDependencies": {
+        "react": ">=16"
+    },
     "devDependencies": {
         "@headlessui/react": "^1.7.17",
         "@types/react": "^18.2.42",
+        "@types/react-dom": "^18.2.17",
         "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "react-icons": "^4.12.0",
         "tsup": "^8.0.1",
         "typescript": "^5.3.3"

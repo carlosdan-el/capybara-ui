@@ -181,7 +181,7 @@ export const Table: FC<TableProps> = ({
                         <li>
                             <a onClick={handlePreviousPage} className="select-none px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">Anterior</a>
                         </li>
-                        {pages.map((page, index) => (
+                        {pages.map((page: number | string, index: number) => (
                             <li key={index}>
                                 <a
                                     onClick={typeof page === 'number' ? () => handlePageChange(page) : undefined}
