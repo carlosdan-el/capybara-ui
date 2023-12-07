@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { usePagination } from '../../hooks/use-pagination';
-import { getNestedValues, sortData } from './utils';
+import { getNestedValues } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp } from 'react-icons/lu';
 import { Menu } from '@headlessui/react';
 
@@ -49,27 +49,14 @@ export const Table: FC<TableProps> = ({
     const {
         pages,
         currentPage,
+        tableColumns,
+        tableData,
         handlePreviousPage,
         handleNextPage,
         handlePageChange,
-        startIndex,
-        endIndex
-    } = usePagination(data.length, itemsPerPage);
-    const [tableData, setTableData] = useState(data.slice(startIndex, endIndex));
-    const [tableColumns, setTableColumns] = useState(columns);
+        handleSortData
+    } = usePagination(columns, data, itemsPerPage);
     const emptyText = emptyDataText ? emptyDataText : 'Não existem dados para exibição';
-    const handleSortData = (column: TableColumn) => {
-        if (column.sortable) {
-            const { columns: sortedColumn, data: sortedData } = sortData(column.key, tableColumns, data);
-            setTableColumns(sortedColumn);
-            setTableData(sortedData.slice(startIndex, endIndex));
-        }
-        return undefined;
-    };
-
-    useEffect(() => setTableColumns(columns), [columns]);
-    useEffect(() => setTableData(data.slice(startIndex, endIndex)), [data]);
-    useEffect(() => setTableData(data.slice(startIndex, endIndex)), [startIndex, endIndex]);
 
     return (
         <div className="w-full">

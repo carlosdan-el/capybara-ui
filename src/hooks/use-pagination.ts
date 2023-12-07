@@ -1,16 +1,18 @@
+import { TableColumn } from 'components/table/table';
+import { sortData } from 'components/table/utils';
 import { useState, useMemo } from 'react';
 
 const MAX_BUTTONS_PER_VIEW = 7;
 
-export const usePagination = (dataLength: number, rowsPerPage: number) => {
+export const usePagination = (columns: TableColumn[], data: any[], rowsPerPage: number) => {
     const [currentPage, setCurrentPage] = useState(1);
     const maxPages = useMemo(() => {
-        const totalPages = Math.ceil(dataLength / rowsPerPage);
+        const totalPages = Math.ceil(data.length / rowsPerPage);
         if (totalPages < currentPage) setCurrentPage(totalPages);
         return totalPages;
-    }, [dataLength, rowsPerPage]);
+    }, [data, rowsPerPage]);
     const pages = useMemo(() => {
-        if (dataLength > 0) {
+        if (data.length > 0) {
             if (maxPages <= 1) return [];
             if (maxPages <= 5) return Array.from({ length: maxPages }).map((_, i) => i + 1);
             if (currentPage < 5) return Array.from({ length: MAX_BUTTONS_PER_VIEW }).map((_, i) => {
@@ -69,15 +71,17 @@ export const usePagination = (dataLength: number, rowsPerPage: number) => {
             });
         }
         return [];
-    }, [dataLength, currentPage, rowsPerPage]);
+    }, [data, currentPage, rowsPerPage]);
     const { startIndex, endIndex }: any = useMemo(() => {
-        if (dataLength > 0) {
+        if (data.length > 0) {
             const startIndex = (currentPage - 1) * rowsPerPage;
             const endIndex = startIndex + rowsPerPage;
             return { startIndex, endIndex };
         }
         return [];
-    }, [dataLength, currentPage, rowsPerPage]);
+    }, [data, currentPage, rowsPerPage]);
+    const [tableColumns, setTableColumns] = useState(columns);
+    const [tableData, setTableData] = useState(data.slice(startIndex, endIndex));
     const handlePreviousPage = (): void => {
         if (currentPage > 1) setCurrentPage(current => current - 1);
     };
@@ -87,14 +91,23 @@ export const usePagination = (dataLength: number, rowsPerPage: number) => {
     const handlePageChange = (page: number): void => {
         if (page >= 1 && page <= maxPages) setCurrentPage(page);
     };
+    const handleSortData = (column: TableColumn) => {
+        if (column.sortable) {
+            const { columns: sortedColumn, data: sortedData } = sortData(column.key, tableColumns, data);
+            setTableColumns(sortedColumn);
+            setTableData(sortedData.slice(startIndex, endIndex));
+        }
+        return undefined;
+    };
     return {
         maxPages,
         currentPage,
+        tableColumns,
+        tableData,
         pages,
-        startIndex,
-        endIndex,
         handlePreviousPage,
         handleNextPage,
-        handlePageChange
+        handlePageChange,
+        handleSortData
     };
 };
