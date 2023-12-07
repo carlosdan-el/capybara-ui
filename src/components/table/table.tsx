@@ -62,7 +62,7 @@ export const Table: FC<TableProps> = ({
         <div className="w-full">
             {!viewOnly &&
                 <div className="w-full flex space-x-4 justify-end mb-4">
-                    <div className="w-full flex space-x-4 justify-end">
+                    <div className="w-full flex space-x-4 items-center justify-end">
                         {searchable &&
                             <div className="relative flex-1">
                                 <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
@@ -84,18 +84,20 @@ export const Table: FC<TableProps> = ({
                             </select>
                             <span>de {data.length} resultados</span>
                         </div>
-                        <Menu>
-                            <Menu.Button className="px-2 -py-1 text-sm font-medium text-center flex items-center rounded-lg border border-transparent hover:border-gray-200">
-                                <LuMoreVertical />
-                            </Menu.Button>
-                            <Menu.Items className="flex flex-col absolute right-0 top-12 bg-white shadow-md border rounded-xl p-4">
-                                <Menu.Item>
-                                    <button onClick={() => { }} type="button" className="px-3 py-2 text-sm font-medium text-center flex items-center">
-                                        <LuDownload className="mr-2" /> Download
-                                    </button>
-                                </Menu.Item>
-                            </Menu.Items>
-                        </Menu>
+                        <div className="relative">
+                            <Menu>
+                                <Menu.Button className="px-2 py-2 text-sm font-medium text-center flex items-center rounded-lg border border-transparent hover:border-gray-200">
+                                    <LuMoreVertical />
+                                </Menu.Button>
+                                <Menu.Items className="flex flex-col absolute right-0 top-8 bg-white shadow-md border rounded-xl p-4">
+                                    <Menu.Item>
+                                        <button onClick={() => { }} type="button" className="px-3 py-2 text-sm font-medium text-center flex items-center">
+                                            <LuDownload className="mr-2" /> Exportar
+                                        </button>
+                                    </Menu.Item>
+                                </Menu.Items>
+                            </Menu>
+                        </div>
                     </div>
                 </div>
             }

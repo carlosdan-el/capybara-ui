@@ -12,7 +12,8 @@ const COLUMNS = [
             style: 'currency',
             currency: 'BRL',
             minimumFractionDigits: 2
-        }).format(row.price)
+        }).format(row.price),
+        sortable: true
     }
 ];
 const DATA = [
