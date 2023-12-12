@@ -68,11 +68,11 @@ export const Table: FC<TableProps> = ({
         return undefined;
     };
 
+    useEffect(() => setInnerColumns(columns), [columns]);
     useEffect(() => setInnerData(data), [data]);
 
     return (
         <div className="w-full">
-            <p>Página atual: {currentPage}</p>
             {!viewOnly &&
                 <div className="w-full flex space-x-4 justify-end mb-4">
                     <div className="w-full flex space-x-4 items-center justify-end">

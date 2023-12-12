@@ -614,16 +614,9 @@ const DATA = [
 const meta: Meta = {
     title: 'Table',
     component: Table,
-    argTypes: {
-        children: {
-            control: {
-                type: 'text',
-            },
-        },
-    },
     parameters: {
         controls: { expanded: true },
-    },
+    }
 };
 
 export default meta;
