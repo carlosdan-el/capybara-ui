@@ -155,7 +155,7 @@ export const Table: FC<TableProps> = ({
                                                             <td
                                                                 scope="row"
                                                                 key={colIndex}
-                                                                className={`${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
+                                                                className={`${getValue(column, item) ? 'relative py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'relative py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                             >
                                                                 <span>
                                                                     {getValue(column, item)}
