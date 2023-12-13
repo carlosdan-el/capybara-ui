@@ -91,7 +91,7 @@ export const Table: FC<TableProps> = ({
                             <>
                                 <div className="flex flex-nowrap items-center space-x-2 text-sm text-gray-400">
                                     <span>Exibindo</span>
-                                    <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2">
+                                    <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2 outline-none">
                                         <option value={10} title="10 itens por página">10</option>
                                         <option value={50} title="50 itens por página">50</option>
                                         <option value={75} title="75 itens por página">75</option>
@@ -125,7 +125,7 @@ export const Table: FC<TableProps> = ({
                             {innerColumns.map((column, index) => {
                                 if (column.visible !== false) {
                                     return (
-                                        <th key={index} scope="col" className="py-3 px-6 whitespace-nowrap" onClick={column.sortable ? () => handleSortData(column): undefined}>
+                                        <th key={index} scope="col" className="py-3 px-6 whitespace-nowrap" onClick={column.sortable ? () => handleSortData(column) : undefined}>
                                             <div className="flex items-center justify-between space-x-4">
                                                 <span>{column.name}</span>
                                                 {column.sortable &&
@@ -155,7 +155,7 @@ export const Table: FC<TableProps> = ({
                                                             <td
                                                                 scope="row"
                                                                 key={colIndex}
-                                                                className={`${getValue(column, item) ? 'relative py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'relative py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
+                                                                className={`relative ${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                             >
                                                                 <span>
                                                                     {getValue(column, item)}
@@ -166,7 +166,7 @@ export const Table: FC<TableProps> = ({
                                                     return (
                                                         <td
                                                             key={colIndex}
-                                                            className={`${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
+                                                            className={`relative ${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                         >
                                                             <span>
                                                                 {getValue(column, item)}
