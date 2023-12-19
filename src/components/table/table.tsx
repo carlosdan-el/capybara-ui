@@ -72,9 +72,9 @@ export const Table: FC<TableProps> = ({
     useEffect(() => setInnerData(data), [data]);
 
     return (
-        <div className="w-full">
+        <div className=" w-full bg-white my-4 rounded-lg py-4">
             {!viewOnly &&
-                <div className="w-full flex space-x-4 justify-end mb-4">
+                <div className="w-full flex space-x-4 justify-end mb-4 px-4">
                     <div className="w-full flex space-x-4 items-center justify-end">
                         {searchable &&
                             <div className="relative flex-1">
@@ -195,7 +195,7 @@ export const Table: FC<TableProps> = ({
                 }
             </div>
             {(!isLoading && data.length > itemsPerPage) &&
-                <nav className="w-full flex justify-end mt-6">
+                <nav className="w-full flex justify-end mt-6 px-4">
                     <ul className="inline-flex -space-x-px">
                         <li>
                             <a onClick={handlePreviousPage} className="select-none px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">Anterior</a>
