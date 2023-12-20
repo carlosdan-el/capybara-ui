@@ -7,12 +7,11 @@ type ButtonRounded = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     _type: ButtonTypes
-    emphasis: ButtonEmphasis
-    size: ButtonSizes
-    rounded: ButtonRounded
+    emphasis?: ButtonEmphasis
+    size?: ButtonSizes
+    rounded?: ButtonRounded
     label: string
     leadingIcon?: React.ReactNode
-    children: ReactNode
     isDisabled?: boolean
     isLoading?: boolean
 }
