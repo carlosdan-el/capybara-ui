@@ -42,7 +42,7 @@ export const Table: FC<TableProps> = ({
     emptyDataText,
     isLoading = false,
     rowsPerPage = 10,
-    searchable = false,
+    searchable = true,
     fixed = false,
     viewOnly = false
 }: TableProps) => {
@@ -97,7 +97,9 @@ export const Table: FC<TableProps> = ({
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => setInnerColumns(columns), [columns]);
-    useEffect(() => setInnerData(data), [data]);
+    useEffect(() => {
+        handleFilterData(data, searchValue);
+    }, [handleFilterData, data, searchValue]);
 
     return (
         <div className=" w-full bg-white my-4 rounded-lg py-4">
