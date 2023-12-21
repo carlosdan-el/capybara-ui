@@ -103,34 +103,36 @@ export const Table: FC<TableProps> = ({
         <div className=" w-full bg-white my-4 rounded-lg py-4">
             {!viewOnly &&
                 <div className="w-full flex space-x-4 justify-end mb-4 px-4">
-                    <div className="w-full flex space-x-4 items-center justify-end">
-                        {(searchable && !isLoading) &&
-                            <div className="relative flex-1">
-                                <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
-                                <input
-                                    type="text"
-                                    id="search-input"
-                                    placeholder="Pesquisar"
-                                    className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4 outline-none"
-                                    value={searchValue}
-                                    onChange={(e) => {
-                                        setSearchValue(e.target.value);
-                                        handleFilterData(data, e.target.value);
-                                    }}
-                                />
-                            </div>
-                        }
+                    <div className="w-full flex space-x-4 items-center justify-end flex-col md:flex-row">
+                        <div className="w-full flex-1 my-4 md:my-0">
+                            {(searchable && !isLoading) &&
+                                <div className="relative flex-1 max-w-md">
+                                    <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
+                                    <input
+                                        type="text"
+                                        id="search-input"
+                                        placeholder="Pesquisar"
+                                        className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4 outline-none"
+                                        value={searchValue}
+                                        onChange={(e) => {
+                                            setSearchValue(e.target.value);
+                                            handleFilterData(data, e.target.value);
+                                        }}
+                                    />
+                                </div>
+                            }
+                        </div>
                         {!isLoading && innerData.length > 0 &&
-                            <>
+                            <div className="w-full flex items-center space-x-4 justify-between -order-1 md:order-1 md:justify-normal md:w-min">
                                 <div className="flex flex-nowrap items-center space-x-2 text-sm text-gray-400">
-                                    <span>Exibindo</span>
+                                    <span className="whitespace-nowrap">Exibindo</span>
                                     <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2 outline-none">
                                         <option value={10} title="10 itens por página">10</option>
                                         <option value={50} title="50 itens por página">50</option>
                                         <option value={75} title="75 itens por página">75</option>
                                         <option value={100} title="100 itens por página">100</option>
                                     </select>
-                                    <span>de {innerData.length} resultados</span>
+                                    <span className="whitespace-nowrap">de {innerData.length} resultados</span>
                                 </div>
                                 <div className="relative">
                                     <Menu>
@@ -146,7 +148,7 @@ export const Table: FC<TableProps> = ({
                                         </Menu.Items>
                                     </Menu>
                                 </div>
-                            </>
+                            </div>
                         }
                     </div>
                 </div>
