@@ -7,7 +7,7 @@ import { Menu } from '@headlessui/react';
 export interface TableProps {
     columns: Array<TableColumn>
     data: Array<any>
-    isLoading: boolean
+    isLoading?: boolean
     emptyDataText?: string
     rowsPerPage?: number
     searchable?: boolean
@@ -37,10 +37,10 @@ const getValue = (column: TableColumn, item: any): string | null => {
 }
 
 export const Table: FC<TableProps> = ({
-    isLoading,
     columns,
     data = [],
     emptyDataText,
+    isLoading = false,
     rowsPerPage = 10,
     searchable = false,
     fixed = false,
@@ -61,12 +61,40 @@ export const Table: FC<TableProps> = ({
     const emptyText = emptyDataText ? emptyDataText : 'Não existem dados para exibição';
     const handleSortData = (column: TableColumn) => {
         if (column.sortable) {
-            const { columns: sortedColumn, data: sortedData } = sortData(column.key, innerColumns, innerData);
-            setInnerColumns(sortedColumn);
+            const order = column.sortableOrder === ETableColumnOrder.Asc ? ETableColumnOrder.Desc : ETableColumnOrder.Asc;
+            const sortedData = sortData(column.key, innerData, order);
+            const sortedColumns = (columns.map(col => {
+                if (col.key.toString() === column.key.toString()) col.sortableOrder = order;
+                if (col.key.toString() !== column.key.toString()) col.sortableOrder = undefined;
+                return col;
+            }));
+
+            setInnerColumns(sortedColumns);
             setInnerData(sortedData);
         }
         return undefined;
     };
+    const handleFilterData = (data: any[], search: string) => {
+        const length = data.length;
+        const results: any[] = [];
+        search = search.toLowerCase().trim();
+
+        for (let i = 0; i < length; i++) {
+            const values = Object.values(data[i]).join(' ').toLowerCase();
+            if (values.includes(search)) results.push(data[i]);
+        }
+
+        const sortedColumn = innerColumns.find(x => x.sortableOrder);
+
+        if (sortedColumn) {
+            const sortedData = sortData(sortedColumn.key, results, sortedColumn.sortableOrder!);
+            setInnerData(sortedData);
+            return;
+        }
+
+        setInnerData(results);
+    }
+    const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => setInnerColumns(columns), [columns]);
     useEffect(() => setInnerData(data), [data]);
@@ -76,7 +104,7 @@ export const Table: FC<TableProps> = ({
             {!viewOnly &&
                 <div className="w-full flex space-x-4 justify-end mb-4 px-4">
                     <div className="w-full flex space-x-4 items-center justify-end">
-                        {searchable &&
+                        {(searchable && !isLoading) &&
                             <div className="relative flex-1">
                                 <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
                                 <input
@@ -84,6 +112,11 @@ export const Table: FC<TableProps> = ({
                                     id="search-input"
                                     placeholder="Pesquisar"
                                     className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4 outline-none"
+                                    value={searchValue}
+                                    onChange={(e) => {
+                                        setSearchValue(e.target.value);
+                                        handleFilterData(data, e.target.value);
+                                    }}
                                 />
                             </div>
                         }
@@ -194,7 +227,7 @@ export const Table: FC<TableProps> = ({
                     </div>
                 }
             </div>
-            {(!isLoading && data.length > itemsPerPage) &&
+            {(!isLoading && innerData.length > itemsPerPage) &&
                 <nav className="w-full flex justify-end mt-6 px-4">
                     <ul className="inline-flex -space-x-px">
                         <li>

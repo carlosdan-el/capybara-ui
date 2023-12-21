@@ -1,30 +1,21 @@
-import { ETableColumnOrder, TableColumn } from './table';
+import { ETableColumnOrder } from './table';
+
+const COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
 
 const orderByAsc = (data: unknown[], key: string[]): unknown[] => {
-    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
-    return data.sort((a: any, b: any) => collator.compare(a[key.toString()], b[key.toString()]));
+    return data.sort((a: any, b: any) => COLLATOR.compare(a[key.toString()], b[key.toString()]));
 };
 
-const orderByDesc = (data: unknown[]): unknown[] => data.reverse();
+const orderByDesc = (data: unknown[], key: string[]): unknown[] => {
+    return data.sort((a: any, b: any) => COLLATOR.compare(a[key.toString()], b[key.toString()])).reverse();
+}
 
-const sortData = (key: string[], columns: TableColumn[], data: unknown[]) => {
-    const column = columns.find(x => x.key.toString() === key.toString());
-    if (column) {
-        const order = column.sortableOrder === ETableColumnOrder.Asc ? ETableColumnOrder.Desc : ETableColumnOrder.Asc;
-        let sortedArray: unknown[] = [];
-        if (order === ETableColumnOrder.Asc) sortedArray = orderByAsc(data, key);
-        if (order === ETableColumnOrder.Desc) sortedArray = orderByDesc(data);
-        const sortedColumns = (columns.map(col => {
-            if (col.key.toString() === key.toString()) col.sortableOrder = order;
-            if (col.key.toString() !== key.toString()) col.sortableOrder = undefined;
-            return col;
-        }));
-        return { columns: sortedColumns, data: sortedArray };
-    }
-    return { columns, data };
+const sortData = (key: string[], data: any[], order: ETableColumnOrder): unknown[] => {
+    if (order === ETableColumnOrder.Asc) return orderByAsc(data, key);
+    return orderByDesc(data, key);
 };
 
-const getNestedValues = (key: string[], obj: any) => {
+const getNestedValues = (key: string[], obj: any): any => {
     return key.reduce((previous, current) => (previous && previous[current]) ? previous[current] : null, obj);
 };
 
