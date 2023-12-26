@@ -42,7 +42,7 @@ export const Table: FC<TableProps> = ({
     emptyDataText,
     isLoading = false,
     rowsPerPage = 10,
-    searchable = true,
+    searchable = false,
     fixed = false,
     viewOnly = false
 }: TableProps) => {
