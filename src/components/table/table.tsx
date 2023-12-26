@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { usePagination } from '../../hooks/use-pagination';
 import { getNestedValues, sortData } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp } from 'react-icons/lu';
@@ -97,9 +97,7 @@ export const Table: FC<TableProps> = ({
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => setInnerColumns(columns), [columns]);
-    useEffect(() => {
-        handleFilterData(data, searchValue);
-    }, [handleFilterData, data, searchValue]);
+    useEffect(() => handleFilterData(data, searchValue), [data]);
 
     return (
         <div className=" w-full bg-white my-4 rounded-lg py-4">
