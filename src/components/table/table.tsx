@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { usePagination } from '../../hooks/use-pagination';
 import { getNestedValues, sortData } from './utils';
-import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp } from 'react-icons/lu';
+import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp, LuMoveLeft, LuMoveRight } from 'react-icons/lu';
 import { Menu } from '@headlessui/react';
+import { Button } from '../button/button';
 
 export interface TableProps {
     columns: Array<TableColumn>
@@ -100,7 +101,7 @@ export const Table: FC<TableProps> = ({
     useEffect(() => handleFilterData(data, searchValue), [data]);
 
     return (
-        <div className=" w-full bg-white my-4 rounded-lg py-4">
+        <div className=" w-full bg-white my-4 rounded-lg py-4 border">
             {!viewOnly &&
                 <div className="w-full flex space-x-4 justify-end mb-4 px-4">
                     <div className="w-full flex space-x-4 items-center justify-end flex-col md:flex-row">
@@ -231,24 +232,33 @@ export const Table: FC<TableProps> = ({
             </div>
             {(!isLoading && innerData.length > itemsPerPage) &&
                 <nav className="w-full flex justify-end mt-6 px-4">
-                    <ul className="inline-flex -space-x-px">
-                        <li>
-                            <a onClick={handlePreviousPage} className="select-none px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">Anterior</a>
-                        </li>
-                        {pagination.map((page: number | string, index: number) => (
-                            <li key={index}>
-                                <a
+                    <div className="w-full inline-flex space-x-4 justify-between items-center">
+                        <Button
+                            _type="outlined"
+                            className=""
+                            leadingIcon={<LuMoveLeft />}
+                            label="Anterior"
+                            onClick={handlePreviousPage}
+                        />
+                        <div className="flex items-center space-x-2">
+                            {pagination.map((page: number | string, index: number) => (
+                                <Button
+                                    key={index}
+                                    _type="text"
+                                    label={page.toString()}
+                                    className={page === currentPage ? 'text-white border-none bg-green-600 hover:bg-green-700 hover:text-white' : 'border-none'}
                                     onClick={typeof page === 'number' ? () => handlePageChange(page) : undefined}
-                                    className={page === currentPage ? 'px-3 py-2 text-green-600 border border-gray-300 bg-green-50 hover:bg-green-100 hover:text-green-700 cursor-pointer select-none' : 'px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer select-none'}
-                                >
-                                    {page}
-                                </a>
-                            </li>
-                        ))}
-                        <li>
-                            <a onClick={handleNextPage} className="select-none px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">Próximo</a>
-                        </li>
-                    </ul>
+                                />
+                            ))}
+                        </div>
+                        <Button
+                            _type="outlined"
+                            className=""
+                            trailingIcon={<LuMoveRight />}
+                            label="Próximo"
+                            onClick={handleNextPage}
+                        />
+                    </div>
                 </nav>
             }
         </div>

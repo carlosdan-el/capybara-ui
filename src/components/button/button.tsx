@@ -11,7 +11,8 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     size?: ButtonSizes
     rounded?: ButtonRounded
     label: string
-    leadingIcon?: React.ReactNode
+    leadingIcon?: React.ReactNode,
+    trailingIcon?: React.ReactNode,
     isDisabled?: boolean
     isLoading?: boolean
 }
@@ -53,12 +54,13 @@ export const Button: FC<ButtonProps> = (
         className = '',
         rounded = 'lg',
         leadingIcon,
+        trailingIcon,
         onClick,
         ...rest
     }
 ) => {
     const classes = useMemo(() => {
-        const values: string[] = [];
+        const values: string[] = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize'];
         if (_type === 'contained' && emphasis === 'high') {
             values.push('text-white bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800');
         }
@@ -77,20 +79,23 @@ export const Button: FC<ButtonProps> = (
 
         values.push(getSizes(size, (label.length === 0)));
         values.push(radius[rounded]);
+        if (className.length > 0) values.push(className);
 
         return values.join(' ');
-    }, [_type, size, label, rounded, emphasis]);
-    const IconContainer = () => <div className={`${label.length > 0 ? 'mr-2' : null}`}>{leadingIcon}</div>;
+    }, [className, _type, size, label, rounded, emphasis]);
+    const LeadingIconContainer = () => <div className={`${label.length > 0 ? 'mr-2' : null}`}>{leadingIcon}</div>;
+    const TrailingIconContainer = () => <div className={`${label.length > 0 ? 'ml-2' : null}`}>{trailingIcon}</div>;
 
     return (
         <button
-            className={`flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize ${classes}`}
+            className={classes}
             onClick={onClick}
             {...rest}
         >
             <React.Fragment>
-                {leadingIcon && <IconContainer />}
+                {leadingIcon && <LeadingIconContainer />}
                 {label}
+                {trailingIcon && <TrailingIconContainer />}
             </React.Fragment>
         </button>
     );
