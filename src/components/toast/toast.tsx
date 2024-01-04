@@ -33,7 +33,7 @@ export const Toast: FC<ToastProps> = ({
     }, [type]);
 
     return (
-        <div className="flex items-center w-full max-w-xs p-4 rtl:space-x-reverse text-gray-500 bg-white rounded-lg shadow-lg" role="alert">
+        <div className="flex items-center w-full max-w-sm p-4 rtl:space-x-reverse text-gray-500 bg-white rounded-lg shadow-lg" role="alert">
             <div>
                 <Lottie options={defaultOptions}
                     height={28}
