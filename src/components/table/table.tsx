@@ -107,13 +107,13 @@ export const Table: FC<TableProps> = ({
                     <div className="w-full flex space-x-4 items-center justify-end flex-col md:flex-row">
                         <div className="w-full flex-1 my-4 md:my-0">
                             {(searchable && !isLoading) &&
-                                <div className="relative flex-1 max-w-md">
+                                <div className="relative flex-1 max-w-sm">
                                     <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
                                     <input
                                         type="text"
                                         id="search-input"
                                         placeholder="Pesquisar"
-                                        className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full py-2.5 pl-8 pr-4 outline-none"
+                                        className="border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2 pl-8 pr-4 outline-none"
                                         value={searchValue}
                                         onChange={(e) => {
                                             setSearchValue(e.target.value);
@@ -224,7 +224,7 @@ export const Table: FC<TableProps> = ({
                         <p className="text-gray-500">Carregando...</p>
                     </div>
                 }
-                {(!isLoading && data.length <= 0) &&
+                {(!isLoading && innerData.length <= 0) &&
                     <div className="w-full flex justify-center mt-4 text-sm">
                         <p className="text-gray-500">{emptyText}</p>
                     </div>

@@ -2,6 +2,8 @@ export * from './components/table/table';
 export * from './components/button/button';
 export * from './components/number-input/number-input';
 export * from './components/text-input/text-input';
+export * from './components/badge/badge';
+export * from './components/toast/toast';
 
 export * from './components/table/utils';
 

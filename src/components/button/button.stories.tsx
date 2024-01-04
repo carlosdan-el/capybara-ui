@@ -9,8 +9,8 @@ const meta: Meta = {
     parameters: {
         controls: {
             expanded: true
-        },
-    },
+        }
+    }
 };
 
 export default meta;
