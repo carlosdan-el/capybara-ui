@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { NumberInput } from './number-input';
 
 const meta: Meta = {
-    title: 'Number Input',
+    title: 'Components/Number Input',
     component: NumberInput,
     parameters: {
         controls: { expanded: true },

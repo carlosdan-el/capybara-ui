@@ -31,7 +31,7 @@ export const NumberInput: FC<NumberInputProps> = ({
 
     return (
         <input
-            className={`block text-gray-900 ${sizeClasses} border border-gray-300 rounded-lg bg-gray-50 outline-none focus:ring-green-500 focus:border-green-500`}
+            className={`block text-gray-900 ${sizeClasses} border border-gray-300 rounded-lg bg-gray-50 outline-none focus:ring-green-500 focus:border-green-500 ${disabled ? 'opacity-50' : ''}`}
             type="text"
             placeholder={placeholder}
             value={value}

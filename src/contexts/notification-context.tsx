@@ -11,18 +11,19 @@ export const NotificationProvider = (
     { children }: { children: JSX.Element | React.ReactNode }
 ) => {
     const [notifications, setNotifications] = useState<ToastProps[]>([]);
-    const addNotification = useCallback((notification: ToastProps) =>
-        setNotifications(notifications => [...notifications, notification]), []);
+    const addNotification = useCallback((notification: ToastProps) => setNotifications(notifications => [...notifications, notification]), []);
 
     useEffect(() => {
         const notificationLength = notifications.length;
         if (notificationLength > 0) {
             const duration = 6000 + (notificationLength * 2000);
-            const time = setTimeout(() =>
-                setNotifications(notifications => notifications.slice(1)), duration);
-
+            const time = setTimeout(() => setNotifications(notifications => notifications.slice(1)), duration);
             return () => clearTimeout(time);
         }
+
+        return () => {
+            setNotifications([]);
+        };
     }, [notifications]);
 
     return (

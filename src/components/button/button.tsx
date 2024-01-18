@@ -13,7 +13,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     label: string
     leadingIcon?: React.ReactNode,
     trailingIcon?: React.ReactNode,
-    isDisabled?: boolean
+    disabled?: boolean
     isLoading?: boolean
 }
 
@@ -53,6 +53,7 @@ export const Button: FC<ButtonProps> = (
         size = 'md',
         className = '',
         rounded = 'lg',
+        disabled = false,
         leadingIcon,
         trailingIcon,
         onClick,
@@ -60,7 +61,7 @@ export const Button: FC<ButtonProps> = (
     }
 ) => {
     const classes = useMemo(() => {
-        const values: string[] = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize'];
+        const values = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize'];
 
         if (className.length > 0) {
             values.push(getSizes(size, (label.length === 0)));
@@ -86,9 +87,11 @@ export const Button: FC<ButtonProps> = (
 
         values.push(getSizes(size, (label.length === 0)));
         values.push(radius[rounded]);
+        
+        if(disabled) values.push('opacity-50');
 
         return values.join(' ');
-    }, [className, _type, size, label, rounded, emphasis]);
+    }, [className, _type, size, label, rounded, emphasis, disabled]);
     const LeadingIconContainer = () => <div className={`${label.length > 0 ? 'mr-2' : null}`}>{leadingIcon}</div>;
     const TrailingIconContainer = () => <div className={`${label.length > 0 ? 'ml-2' : null}`}>{trailingIcon}</div>;
 
@@ -96,6 +99,7 @@ export const Button: FC<ButtonProps> = (
         <button
             className={classes}
             onClick={onClick}
+            disabled={disabled}
             {...rest}
         >
             <React.Fragment>

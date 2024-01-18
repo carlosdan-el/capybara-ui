@@ -612,7 +612,7 @@ const DATA = [
 ];
 
 const meta: Meta = {
-    title: 'Table',
+    title: 'Components/Table',
     component: Table,
     parameters: {
         controls: { expanded: true },

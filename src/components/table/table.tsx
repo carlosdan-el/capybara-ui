@@ -237,7 +237,7 @@ export const Table: FC<TableProps> = ({
                 <nav className="w-full flex justify-end mt-6 px-4">
                     <div className="w-full inline-flex space-x-4 justify-between items-center">
                         <Button
-                            className="text-gray-400"
+                            className="text-gray-400 focus:ring-green-300"
                             _type="text"
                             leadingIcon={<LuMoveLeft />}
                             label="Anterior"
@@ -251,13 +251,13 @@ export const Table: FC<TableProps> = ({
                                     _type="text"
                                     size="sm"
                                     label={page.toString()}
-                                    className={page === currentPage ? 'bg-green-50 border border-green-300 text-gray-400' : ' text-gray-400'}
+                                    className={page === currentPage ? 'bg-green-50 border border-green-300 text-gray-400 focus:ring-green-300' : ' text-gray-400 focus:ring-green-300'}
                                     onClick={typeof page === 'number' ? () => handlePageChange(page) : undefined}
                                 />
                             ))}
                         </div>
                         <Button
-                            className="text-gray-400"
+                            className="text-gray-400 focus:ring-green-300"
                             _type="text"
                             trailingIcon={<LuMoveRight />}
                             label="Próximo"

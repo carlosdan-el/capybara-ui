@@ -1,10 +1,12 @@
 # avine-react-components
 
 ## 🔎 Sobre
-Um conjunto de componentes para aplicações React, desenvolvido e projetado a fim de agilizar, otimizar e padronizar o processo de desenvolvimento dos sistemas na Avine Alimentos.
+Um conjunto de componentes para aplicações React, desenvolvido e projetado a fim de agilizar, 
+otimizar e padronizar o processo de desenvolvimento dos sistemas na Avine Alimentos.
 
 Obs.: 
-- Atualmente o pacote está em versão beta (em desenvolvimento) e pode haver alterações no nome e componentes.
+- Atualmente em versão beta (desenvolvimento), podendo haver alterações 
+no nome da biblioteca e remoção de componentes.
 
 ## 💻 Instalação
 
@@ -16,15 +18,22 @@ npm install avine-react-components
 - Icones: https://boxicons.com/
 
 ## Components
+- [] - Alert
+- [] - Avatar
+- [] - Context Menu
 - [x] - Button
 - [x] - Table
 - [] - Datagrid
-- [] - Checkbox
+- [x] - Checkbox
 - [x] - Text Input
 - [x] - Number Input
 - [x] - Toast
 - [] - Dialog
 - [x] - Badge
+- [] - Switch
+- [] - Tabs
+- [] - Text Area
+- [] - Progress
 
 ## Contexts
 - [] - Loading Context

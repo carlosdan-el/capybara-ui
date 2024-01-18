@@ -3,7 +3,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Toast, ToastProps } from "./toast";
 
 const meta: Meta = {
-    title: 'Toast',
+    title: 'Components/Toast',
     component: Toast,
     parameters: {
         controls: {

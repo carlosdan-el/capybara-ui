@@ -4,7 +4,7 @@ import { Button, ButtonProps } from "./button";
 import { LuStar } from "react-icons/lu";
 
 const meta: Meta = {
-    title: 'Button',
+    title: 'Components/Button',
     component: Button,
     parameters: {
         controls: {

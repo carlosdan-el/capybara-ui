@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Badge, BadgeProps } from './badge';
 
 const meta: Meta = {
-    title: 'Badge',
+    title: 'Components/Badge',
     component: Badge,
     parameters: {
         controls: {
