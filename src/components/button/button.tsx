@@ -61,8 +61,15 @@ export const Button: FC<ButtonProps> = (
 ) => {
     const classes = useMemo(() => {
         const values: string[] = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize'];
+
+        if (className.length > 0) {
+            values.push(getSizes(size, (label.length === 0)));
+            values.push(radius[rounded]);
+            values.push(className);
+            return values.join(' ');
+        }
         if (_type === 'contained' && emphasis === 'high') {
-            values.push('text-white bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800');
+            values.push('text-white bg-green-600 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800');
         }
         if (_type === 'contained' && emphasis === 'medium') {
             values.push('text-gray-600 bg-green-100 hover:bg-green-200 focus:ring-green-300 dark:bg-green-300 dark:hover:bg-green-300 dark:focus:ring-green-400');
@@ -79,7 +86,6 @@ export const Button: FC<ButtonProps> = (
 
         values.push(getSizes(size, (label.length === 0)));
         values.push(radius[rounded]);
-        if (className.length > 0) values.push(className);
 
         return values.join(' ');
     }, [className, _type, size, label, rounded, emphasis]);

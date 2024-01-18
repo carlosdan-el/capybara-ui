@@ -642,18 +642,53 @@ const TableWithPromiseData = () => {
     const [data, setData] = useState<any>([]);
 
     useEffect(() => {
-        const promise = Promise.resolve(DATA);
-        promise.then((value) => {
-            setTimeout(() => {
-                setData(value);
+        fetch('https://dummyjson.com/products')
+            .then(response => response.json())
+            .then(data => {
+                setData(data.products);
                 setLoading(false);
-            }, 3000);
-        });
+            });
     }, []);
 
     return (
         <Table
-            columns={COLUMNS}
+            columns={[
+                {
+                    key: ['id'],
+                    name: 'ID'
+                },
+                {
+                    key: ['title'],
+                    name: 'Title'
+                },
+                {
+                    key: ['description'],
+                    name: 'Description'
+                },
+                {
+                    key: ['price'],
+                    name: 'price',
+                    sortable: true
+                },
+                {
+                    key: ['rating'],
+                    name: 'Rating',
+                    sortable: true
+                },
+                {
+                    key: ['stock'],
+                    name: 'Stock',
+                    sortable: true
+                },
+                {
+                    key: ['brand'],
+                    name: 'Brand'
+                },
+                {
+                    key: ['category'],
+                    name: 'Category'
+                },
+            ]}
             data={data}
             isLoading={loading}
         />

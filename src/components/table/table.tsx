@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { usePagination } from '../../hooks/use-pagination';
 import { getNestedValues, sortData } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp, LuMoveLeft, LuMoveRight } from 'react-icons/lu';
@@ -14,6 +14,7 @@ export interface TableProps {
     searchable?: boolean
     fixed?: boolean
     viewOnly?: boolean
+    striped?: boolean
 }
 
 export enum ETableColumnOrder {
@@ -28,7 +29,8 @@ export interface TableColumn {
     key: string[]
     sortable?: boolean
     sortableOrder?: ETableColumnOrder
-    formatter?: (value: any) => unknown,
+    formatter?: (value: any) => unknown
+    //type?: 'string' | 'number' | 'currency'
     events?: { onClick: () => unknown }
 }
 
@@ -45,7 +47,8 @@ export const Table: FC<TableProps> = ({
     rowsPerPage = 10,
     searchable = false,
     fixed = false,
-    viewOnly = false
+    viewOnly = false,
+    striped = false
 }: TableProps) => {
     const [innerColumns, setInnerColumns] = useState(columns);
     const [innerData, setInnerData] = useState(data);
@@ -108,12 +111,12 @@ export const Table: FC<TableProps> = ({
                         <div className="w-full flex-1 my-4 md:my-0">
                             {(searchable && !isLoading) &&
                                 <div className="relative flex-1 max-w-sm">
-                                    <LuSearch className="absolute top-2.5 left-2 text-gray-300" size={20} />
+                                    <LuSearch className="absolute top-2.5 left-2 text-gray-400" size={20} />
                                     <input
                                         type="text"
                                         id="search-input"
                                         placeholder="Pesquisar"
-                                        className="border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2 pl-8 pr-4 outline-none"
+                                        className="bg-green-50 border border-gray-200 text-gray-700 text-sm rounded-full focus:ring-green-500 focus:border-green-500 block w-full p-2 pl-8 pr-4 outline-none placeholder:text-gray-400"
                                         value={searchValue}
                                         onChange={(e) => {
                                             setSearchValue(e.target.value);
@@ -127,7 +130,7 @@ export const Table: FC<TableProps> = ({
                             <div className="w-full flex items-center space-x-4 justify-between -order-1 md:order-1 md:justify-normal md:w-min">
                                 <div className="flex flex-nowrap items-center space-x-2 text-sm text-gray-400">
                                     <span className="whitespace-nowrap">Exibindo</span>
-                                    <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-green-700 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2 outline-none">
+                                    <select value={itemsPerPage} onChange={e => setItemsPerPage(Number(e.target.value))} className="bg-green-50 border border-green-300 text-gray-400 font-medium text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2 outline-none">
                                         <option value={10} title="10 itens por página">10</option>
                                         <option value={50} title="50 itens por página">50</option>
                                         <option value={75} title="75 itens por página">75</option>
@@ -135,7 +138,7 @@ export const Table: FC<TableProps> = ({
                                     </select>
                                     <span className="whitespace-nowrap">de {innerData.length} resultados</span>
                                 </div>
-                                <div className="relative">
+                                <div className="relative text-gray-500">
                                     <Menu>
                                         <Menu.Button className="px-2 py-2 text-sm font-medium text-center flex items-center rounded-lg border border-transparent hover:border-gray-200">
                                             <LuMoreVertical />
@@ -155,19 +158,19 @@ export const Table: FC<TableProps> = ({
                 </div>
             }
             <div className="w-full overflow-x-auto">
-                <table className={`w-full text-sm text-left text-gray-500 ${fixed ?? 'table-fixed'}`}>
-                    <thead className="text-green-700 capitalize bg-green-50 whitespace-nowrap">
+                <table className={`w-full text-sm text-left text-gray-600 ${fixed ?? 'table-fixed'}`}>
+                    <thead className="text-gray-400 capitalize bg-green-50 whitespace-nowrap">
                         <tr>
                             {innerColumns.map((column, index) => {
                                 if (column.visible !== false) {
                                     return (
-                                        <th key={index} scope="col" className="py-3 px-6 whitespace-nowrap" onClick={column.sortable ? () => handleSortData(column) : undefined}>
+                                        <th key={index} scope="col" className="py-3 px-6 whitespace-nowrap font-normal hover:text-gray-600" onClick={column.sortable ? () => handleSortData(column) : undefined}>
                                             <div className="flex items-center justify-between space-x-4">
                                                 <span>{column.name}</span>
                                                 {column.sortable &&
                                                     <div className="flex flex-col items-center justify-around">
-                                                        <LuChevronUp size={16} className={column.sortableOrder === 'asc' ? 'text-green-700' : 'text-gray-300'} />
-                                                        <LuChevronDown size={16} className={column.sortableOrder === 'desc' ? '-mt-1.5 text-green-700' : '-mt-1.5 text-gray-300'} />
+                                                        <LuChevronUp size={12} className={column.sortableOrder === 'asc' ? 'hover:text-gray-600' : 'text-gray-300'} />
+                                                        <LuChevronDown size={12} className={column.sortableOrder === 'desc' ? '-mt-1.5 hover:text-gray-600' : '-mt-1.5 text-gray-300'} />
                                                     </div>
                                                 }
                                             </div>
@@ -182,7 +185,7 @@ export const Table: FC<TableProps> = ({
                         {!isLoading &&
                             innerData.slice(startIndex, endIndex).map((item: any, rowIndex: number) => {
                                 return (
-                                    <tr key={rowIndex} className="hover:bg-green-50 [&:not(:last-child)]:border-b">
+                                    <tr key={rowIndex} className={`hover:bg-green-50 [&:not(:last-child)]:border-b ${striped ? 'even:bg-gray-50' : ''} ${item?.selected ? 'bg-green-100' : ''}`}>
                                         {
                                             innerColumns.map((column, colIndex) => {
                                                 if (column.visible !== false) {
@@ -234,10 +237,11 @@ export const Table: FC<TableProps> = ({
                 <nav className="w-full flex justify-end mt-6 px-4">
                     <div className="w-full inline-flex space-x-4 justify-between items-center">
                         <Button
-                            _type="outlined"
-                            className=""
+                            className="text-gray-400"
+                            _type="text"
                             leadingIcon={<LuMoveLeft />}
                             label="Anterior"
+                            size="sm"
                             onClick={handlePreviousPage}
                         />
                         <div className="flex items-center space-x-2">
@@ -245,17 +249,19 @@ export const Table: FC<TableProps> = ({
                                 <Button
                                     key={index}
                                     _type="text"
+                                    size="sm"
                                     label={page.toString()}
-                                    className={page === currentPage ? 'text-white border-none bg-green-600 hover:bg-green-700 hover:text-white' : 'border-none'}
+                                    className={page === currentPage ? 'bg-green-50 border border-green-300 text-gray-400' : ' text-gray-400'}
                                     onClick={typeof page === 'number' ? () => handlePageChange(page) : undefined}
                                 />
                             ))}
                         </div>
                         <Button
-                            _type="outlined"
-                            className=""
+                            className="text-gray-400"
+                            _type="text"
                             trailingIcon={<LuMoveRight />}
                             label="Próximo"
+                            size="sm"
                             onClick={handleNextPage}
                         />
                     </div>
