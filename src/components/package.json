@@ -1,0 +1,5 @@
+{
+    "name": "avine-react-components/components",
+    "type": "module",
+    "main": "/dist/components/index.js"
+}
