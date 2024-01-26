@@ -235,7 +235,7 @@ export const Table: FC<TableProps> = ({
             </div>
             {(!isLoading && innerData.length > itemsPerPage) &&
                 <nav className="w-full flex justify-end mt-6 px-4">
-                    <div className="w-full inline-flex space-x-4 justify-between items-center">
+                    <div className="w-full inline-flex space-x-4 justify-center items-center">
                         <Button
                             className="text-gray-400 focus:ring-green-300"
                             _type="text"
