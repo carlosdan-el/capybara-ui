@@ -136,7 +136,7 @@ export const Table: FC<TableProps> = ({
                                         <option value={75} title="75 itens por página">75</option>
                                         <option value={100} title="100 itens por página">100</option>
                                     </select>
-                                    <span className="whitespace-nowrap">de {innerData.length} resultados</span>
+                                    <span className="whitespace-nowrap">de {new Intl.NumberFormat('pt-BR').format(innerData.length)} resultados</span>
                                 </div>
                                 <div className="relative text-gray-500">
                                     <Menu>
