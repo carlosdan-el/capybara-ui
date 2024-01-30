@@ -22,5 +22,7 @@ Default.args = {
     value: 74.15,
     valueFormatter: (value: number) => value.toFixed(0) + '%',
     trailingIcon: <LuDollarSign />,
-    footerContent: <div><span className="text-red-600 font-semibold">9%</span> para atingir a meta</div>
+    footerContent: <div><span className="text-red-600 font-semibold">9%</span> para atingir a meta</div>,
+    isLoading: false,
+    error: false
 };
