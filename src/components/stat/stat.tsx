@@ -11,9 +11,26 @@ export interface StatProps {
     error?: boolean
 }
 
+const StatShimmer = ({ title }: { title: string }) => {
+    return (
+        <div className="w-full flex flex-col p-4 bg-white rounded-lg border border-gray-200 select-none">
+            <div className="w-full flex justify-between items-center space-x-4 text-gray-600">
+                <h6 className="text-base font-medium">{title}</h6>
+                <Spinner size="sm"/>
+            </div>
+            <div className="w-full flex mt-2 animate-pulse">
+                <div className="bg-gray-100 rounded-lg w-40 h-9"></div>
+            </div>
+            <div className="w-full flex mt-1 animate-pulse">
+            <div className="bg-gray-100 rounded-md w-64 h-4"></div>
+            </div>
+        </div>
+    );
+};
+
 export const Stat: FC<StatProps> = ({
     title,
-    value,
+    value = 0,
     valueFormatter,
     footerContent,
     trailingIcon,
@@ -36,6 +53,8 @@ export const Stat: FC<StatProps> = ({
         </div>
     );
 
+    if (isLoading) return <StatShimmer title={title}/>;
+
     return (
         <div className="w-full flex flex-col p-4 bg-white rounded-lg border border-gray-200 select-none">
             <div className="w-full flex justify-between items-center space-x-4 text-gray-600">
@@ -44,23 +63,15 @@ export const Stat: FC<StatProps> = ({
                     <span>{trailingIcon}</span>
                 }
             </div>
-            {isLoading ?
-                <div className="w-full flex justify-center mt-2">
-                    <Spinner size="lg" />
+            <div className="w-full flex mt-2">
+                <h3 className="text-3xl font-semibold text-gray-800">
+                    {valueFormatter ? valueFormatter(value) : value}
+                </h3>
+            </div>
+            {footerContent &&
+                <div className="w-full flex mt-1">
+                    <h6 className="text-xs font-medium text-gray-400">{footerContent}</h6>
                 </div>
-                :
-                <>
-                    <div className="w-full flex mt-2">
-                        <h3 className="text-3xl font-semibold text-gray-800">
-                            {valueFormatter ? valueFormatter(value) : value}
-                        </h3>
-                    </div>
-                    {footerContent &&
-                        <div className="w-full flex mt-1">
-                            <h6 className="text-xs font-medium text-gray-400">{footerContent}</h6>
-                        </div>
-                    }
-                </>
             }
         </div>
     );

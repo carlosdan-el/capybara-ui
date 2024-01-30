@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Stat } from './stat';
 import React from 'react';
-import { LuDollarSign } from 'react-icons/lu';
+import { LuDollarSign, LuTrendingUp } from 'react-icons/lu';
 
 const meta: Meta = {
     title: 'Charts/Stat',
@@ -21,7 +21,7 @@ Default.args = {
     title: 'SLA (mês)',
     value: 74.15,
     valueFormatter: (value: number) => value.toFixed(0) + '%',
-    trailingIcon: <LuDollarSign />,
+    trailingIcon: <LuTrendingUp />,
     footerContent: <div><span className="text-red-600 font-semibold">9%</span> para atingir a meta</div>,
     isLoading: false,
     error: false

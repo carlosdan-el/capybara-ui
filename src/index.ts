@@ -1,4 +1,3 @@
-// components
 export * from './components/table/table';
 export * from './components/button/button';
 export * from './components/number-input/number-input';
