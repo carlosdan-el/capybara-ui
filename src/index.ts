@@ -6,6 +6,7 @@ export * from './components/badge/badge';
 export * from './components/toast/toast';
 export * from './components/stat/stat';
 export * from './components/spinner/spinner';
+export * from './components/checkbox/checkbox';
 
 export * from './components/table/utils';
 

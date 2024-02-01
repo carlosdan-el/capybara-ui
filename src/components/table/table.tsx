@@ -29,13 +29,13 @@ export interface TableColumn {
     key: string[]
     sortable?: boolean
     sortableOrder?: ETableColumnOrder
-    formatter?: (value: any) => unknown
-    //type?: 'string' | 'number' | 'currency'
+    rowHeadFormatter?: (value: any) => React.ReactNode | string
+    rowCellFormatter?: (value: any) => unknown
     events?: { onClick: () => unknown }
 }
 
 const getValue = (column: TableColumn, item: any): string | null => {
-    if (column.formatter) return column.formatter(item) as string;
+    if (column.rowCellFormatter) return column.rowCellFormatter(item) as string;
     return getNestedValues(column.key, item) as string;
 }
 
@@ -166,7 +166,10 @@ export const Table: FC<TableProps> = ({
                                     return (
                                         <th key={index} scope="col" className="py-3 px-6 whitespace-nowrap font-normal hover:text-gray-600" onClick={column.sortable ? () => handleSortData(column) : undefined}>
                                             <div className="flex items-center justify-between space-x-4">
-                                                <span>{column.name}</span>
+                                                {column.rowHeadFormatter ?
+                                                    column.rowHeadFormatter(column.name) :
+                                                    <span>{column.name}</span>
+                                                }
                                                 {column.sortable &&
                                                     <div className="flex flex-col items-center justify-around">
                                                         <LuChevronUp size={12} className={column.sortableOrder === 'asc' ? 'hover:text-gray-600' : 'text-gray-300'} />

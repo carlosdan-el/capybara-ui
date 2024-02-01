@@ -5,6 +5,7 @@ export interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
     rounded?: boolean
     disabled?: boolean
     hidden?: boolean
+    label: string
 };
 
 export const Checkbox = ({
@@ -12,6 +13,7 @@ export const Checkbox = ({
     rounded = false,
     disabled = false,
     hidden = false,
+    label = '',
     ...rest
 }: CheckboxProps) => {
     const classes = useMemo(() => {
@@ -32,7 +34,7 @@ export const Checkbox = ({
                 {...rest}
             />
             <label htmlFor={id} className={`ms-2 text-sm font-medium ${hidden ? 'hidden' : ''} ${disabled ? 'opacity-50' : ''}`}>
-                Default checkbox
+                {label}
             </label>
         </div>
     );

@@ -21,13 +21,7 @@
         "build-storybook": "storybook build"
     },
     "author": "Carlos Daniel",
-    "peerDependencies": {
-        "@headlessui/react": "^1.7.17",
-        "flowbite": "^1.6.5",
-        "flowbite-react": "^0.4.4",
-        "react": ">=16",
-        "tailwindcss": "^3.3.6"
-    },
+    "peerDependencies": {},
     "devDependencies": {
         "@storybook/addon-essentials": "^7.6.4",
         "@storybook/addon-interactions": "^7.6.4",
@@ -51,6 +45,11 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "react-lottie": "^1.2.4"
+        "@headlessui/react": "^1.7.17",
+        "flowbite": "^1.6.5",
+        "flowbite-react": "^0.4.4",
+        "react": ">=16",
+        "react-lottie": "^1.2.4",
+        "tailwindcss": "^3.3.6"
     }
 }
