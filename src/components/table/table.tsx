@@ -30,12 +30,12 @@ export interface TableColumn {
     sortable?: boolean
     sortableOrder?: ETableColumnOrder
     rowHeadFormatter?: (value: any) => React.ReactNode | string
-    rowCellFormatter?: (value: any) => unknown
+    rowCellFormatter?: ((item: any, index?: number) => unknown) | ((item: any) => unknown)
     events?: { onClick: () => unknown }
 }
 
-const getValue = (column: TableColumn, item: any): string | null => {
-    if (column.rowCellFormatter) return column.rowCellFormatter(item) as string;
+const getValue = (column: TableColumn, item: any, index: number): string | null => {
+    if (column.rowCellFormatter) return column.rowCellFormatter(item, index) as string;
     return getNestedValues(column.key, item) as string;
 }
 
@@ -197,10 +197,10 @@ export const Table: FC<TableProps> = ({
                                                             <td
                                                                 scope="row"
                                                                 key={colIndex}
-                                                                className={`relative ${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
+                                                                className={`relative ${getValue(column, item, colIndex) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                             >
                                                                 <span>
-                                                                    {getValue(column, item)}
+                                                                    {getValue(column, item, rowIndex)}
                                                                 </span>
                                                             </td>
                                                         );
@@ -208,10 +208,10 @@ export const Table: FC<TableProps> = ({
                                                     return (
                                                         <td
                                                             key={colIndex}
-                                                            className={`relative ${getValue(column, item) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
+                                                            className={`relative ${getValue(column, item, colIndex) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                         >
                                                             <span>
-                                                                {getValue(column, item)}
+                                                                {getValue(column, item, rowIndex)}
                                                             </span>
                                                         </td>
                                                     );
