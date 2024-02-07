@@ -659,7 +659,8 @@ const TableWithPromiseData = () => {
                 },
                 {
                     key: ['title'],
-                    name: 'Title'
+                    name: 'Title',
+                    contentEditable: true
                 },
                 {
                     key: ['description'],

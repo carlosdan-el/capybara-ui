@@ -1,9 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useRef } from 'react';
 import { usePagination } from '../../hooks/use-pagination';
 import { getNestedValues, sortData } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp, LuMoveLeft, LuMoveRight } from 'react-icons/lu';
 import { Menu } from '@headlessui/react';
 import { Button } from '../button/button';
+import { utils, writeFileXLSX } from "xlsx";
 
 export interface TableProps {
     columns: Array<TableColumn>
@@ -32,6 +33,8 @@ export interface TableColumn {
     rowHeadFormatter?: (value: any) => React.ReactNode | string
     rowCellFormatter?: ((item: any, index?: number) => unknown) | ((item: any) => unknown)
     events?: { onClick: () => unknown }
+    title?: string
+    contentEditable?: boolean
 }
 
 const getValue = (column: TableColumn, item: any, index: number): string | null => {
@@ -50,6 +53,7 @@ export const Table: FC<TableProps> = ({
     viewOnly = false,
     striped = false
 }: TableProps) => {
+    const table = useRef(null);
     const [innerColumns, setInnerColumns] = useState(columns);
     const [innerData, setInnerData] = useState(data);
     const [itemsPerPage, setItemsPerPage] = useState(rowsPerPage);
@@ -63,6 +67,7 @@ export const Table: FC<TableProps> = ({
         handlePageChange
     } = usePagination(innerData, itemsPerPage);
     const emptyText = emptyDataText ? emptyDataText : 'Não existem dados para exibição';
+    const [searchValue, setSearchValue] = useState('');
     const handleSortData = (column: TableColumn) => {
         if (column.sortable) {
             const order = column.sortableOrder === ETableColumnOrder.Asc ? ETableColumnOrder.Desc : ETableColumnOrder.Asc;
@@ -98,7 +103,26 @@ export const Table: FC<TableProps> = ({
 
         setInnerData(results);
     }
-    const [searchValue, setSearchValue] = useState('');
+    const handleExcelExport = () => {
+        const rows: any[] = [];
+
+        for (let i = 0; i < data.length; i++) {
+            let row: any = {};
+            innerColumns.forEach((column: any) => {
+                if (column.exportFormatter) {
+                    row[column.name] = column.exportFormatter(getNestedValues(column.key, data[i]));
+                    return;
+                }
+                row[column.name] = getNestedValues(column.key, data[i]);
+            });
+            rows.push(row);
+        }
+
+        const worksheet = utils.json_to_sheet(rows);
+        const workbook = utils.book_new();
+        utils.book_append_sheet(workbook, worksheet, 'test');
+        writeFileXLSX(workbook, "export.xlsx");
+    };
 
     useEffect(() => setInnerColumns(columns), [columns]);
     useEffect(() => handleFilterData(data, searchValue), [data]);
@@ -145,7 +169,7 @@ export const Table: FC<TableProps> = ({
                                         </Menu.Button>
                                         <Menu.Items className="flex flex-col absolute right-0 top-8 bg-white shadow-md border rounded-xl p-4">
                                             <Menu.Item>
-                                                <button onClick={() => { }} type="button" className="px-3 py-2 text-sm font-medium text-center flex items-center">
+                                                <button onClick={handleExcelExport} type="button" className="px-3 py-2 text-sm font-medium text-center flex items-center">
                                                     <LuDownload className="mr-2" /> Exportar
                                                 </button>
                                             </Menu.Item>
@@ -158,13 +182,13 @@ export const Table: FC<TableProps> = ({
                 </div>
             }
             <div className="w-full overflow-x-auto">
-                <table className={`w-full text-sm text-left text-gray-600 ${fixed ?? 'table-fixed'}`}>
+                <table ref={table} className={`w-full text-sm text-left text-gray-600 ${fixed ?? 'table-fixed'}`}>
                     <thead className="text-gray-400 capitalize bg-green-50 whitespace-nowrap">
                         <tr>
                             {innerColumns.map((column, index) => {
                                 if (column.visible !== false) {
                                     return (
-                                        <th key={index} scope="col" className="py-3 px-6 whitespace-nowrap font-normal hover:text-gray-600" onClick={column.sortable ? () => handleSortData(column) : undefined}>
+                                        <th title={column.title ?? column.name} key={index} scope="col" className="py-3 px-6 whitespace-nowrap font-normal hover:text-gray-600" onClick={column.sortable ? () => handleSortData(column) : undefined}>
                                             <div className="flex items-center justify-between space-x-4">
                                                 {column.rowHeadFormatter ?
                                                     column.rowHeadFormatter(column.name) :
@@ -199,9 +223,9 @@ export const Table: FC<TableProps> = ({
                                                                 key={colIndex}
                                                                 className={`relative ${getValue(column, item, colIndex) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                             >
-                                                                <span>
+                                                                <div contentEditable={column.contentEditable}>
                                                                     {getValue(column, item, rowIndex)}
-                                                                </span>
+                                                                </div>
                                                             </td>
                                                         );
                                                     }
@@ -210,9 +234,9 @@ export const Table: FC<TableProps> = ({
                                                             key={colIndex}
                                                             className={`relative ${getValue(column, item, colIndex) ? 'py-4 px-6 whitespace-nowrap hover:bg-green-100' : 'py-4 px-6 whitespace-nowrap hover:bg-green-100 before:content-["(vazio)"] text-gray-300'}`}
                                                         >
-                                                            <span>
+                                                            <div contentEditable={column.contentEditable}>
                                                                 {getValue(column, item, rowIndex)}
-                                                            </span>
+                                                            </div>
                                                         </td>
                                                     );
                                                 }
