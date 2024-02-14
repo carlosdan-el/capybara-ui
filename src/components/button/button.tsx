@@ -1,11 +1,11 @@
-import React, { FC, HTMLAttributes, ReactNode, useMemo } from 'react';
+import React, { ButtonHTMLAttributes, FC, useMemo } from 'react';
 
 type ButtonTypes = 'text' | 'outlined' | 'contained';
 type ButtonEmphasis = 'high' | 'medium' | 'low';
 type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type ButtonRounded = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     _type: ButtonTypes
     emphasis?: ButtonEmphasis
     size?: ButtonSizes
@@ -87,8 +87,8 @@ export const Button: FC<ButtonProps> = (
 
         values.push(getSizes(size, (label.length === 0)));
         values.push(radius[rounded]);
-        
-        if(disabled) values.push('opacity-50');
+
+        if (disabled) values.push('opacity-50');
 
         return values.join(' ');
     }, [className, _type, size, label, rounded, emphasis, disabled]);
