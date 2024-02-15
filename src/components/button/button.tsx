@@ -47,6 +47,7 @@ const radius = {
 
 export const Button: FC<ButtonProps> = (
     {
+        type = 'button',
         _type = 'contained',
         emphasis = 'high',
         label = '',
@@ -97,6 +98,7 @@ export const Button: FC<ButtonProps> = (
 
     return (
         <button
+            type={type}
             className={classes}
             onClick={onClick}
             disabled={disabled}
