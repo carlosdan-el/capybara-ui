@@ -8,6 +8,8 @@ export * from './components/stat/stat';
 export * from './components/spinner/spinner';
 export * from './components/checkbox/checkbox';
 
+export * from './components/heading/heading';
+
 export * from './components/table/utils';
 
 export * from './hooks/use-pagination';
