@@ -13,3 +13,5 @@ export * from './components/heading/heading';
 export * from './components/table/utils';
 
 export * from './hooks/use-pagination';
+
+export * from './contexts/notification-context';
