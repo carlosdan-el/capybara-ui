@@ -1,4 +1,4 @@
-export default function UseUtils() {
+export const useUtils = () => {
     const formatCpfCnpj = (cpfCnpj: string | null): string => {
         if (cpfCnpj === null || cpfCnpj === undefined) return '';
         if (cpfCnpj.length === 11) return cpfCnpj.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
