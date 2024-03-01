@@ -125,7 +125,7 @@ export const Table: FC<TableProps> = ({
     };
 
     useEffect(() => setInnerColumns(columns), [columns]);
-    useEffect(() => handleFilterData(data, searchValue), [data]);
+    useEffect(() => handleFilterData(data, searchValue), [data, searchValue]);
 
     return (
         <div className=" w-full bg-white my-4 rounded-lg py-4 border">
