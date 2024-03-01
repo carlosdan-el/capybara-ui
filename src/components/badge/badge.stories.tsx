@@ -19,6 +19,7 @@ const Template: StoryFn<BadgeProps> = args => <Badge {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    type: 'info',
-    label: 'Default'
+    type: 'blue',
+    label: 'Default',
+    title: 'Default'
 };
