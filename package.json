@@ -1,55 +1,55 @@
 {
-    "name": "avine-react-components",
-    "version": "0.1.51",
-    "license": "MIT",
-    "description": "",
-    "main": "dist/index.js",
-    "typings": "dist/index.d.ts",
-    "files": [
-        "dist",
-        "src"
-    ],
-    "engines": {
-        "node": ">=12"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsup src --clean --out-dir dist",
-        "prepare": "tsup src --clean --out-dir dist",
-        "deploy": "npm version patch && npm publish",
-        "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build"
-    },
-    "author": "Carlos Daniel",
-    "devDependencies": {
-        "@storybook/addon-essentials": "^7.6.4",
-        "@storybook/addon-interactions": "^7.6.4",
-        "@storybook/addon-links": "^7.6.4",
-        "@storybook/addon-onboarding": "^1.0.9",
-        "@storybook/addon-styling-webpack": "^0.0.5",
-        "@storybook/blocks": "^7.6.4",
-        "@storybook/react": "^7.6.4",
-        "@storybook/react-vite": "^7.6.4",
-        "@storybook/test": "^7.6.4",
-        "@types/react": "^18.2.42",
-        "@types/react-dom": "^18.2.17",
-        "@types/react-lottie": "^1.2.10",
-        "autoprefixer": "^10.4.16",
-        "postcss": "^8.4.32",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-icons": "^4.12.0",
-        "storybook": "^7.6.4",
-        "tsup": "^8.0.1",
-        "typescript": "^5.3.3"
-    },
-    "dependencies": {
-        "@headlessui/react": "^1.7.17",
-        "flowbite": "^1.6.5",
-        "flowbite-react": "^0.4.4",
-        "react": ">=16",
-        "react-lottie": "^1.2.4",
-        "tailwindcss": "^3.3.6",
-        "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
-    }
+  "name": "avine-react-components",
+  "version": "0.1.51",
+  "license": "MIT",
+  "description": "",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup src --clean --out-dir dist",
+    "prepare": "tsup src --clean --out-dir dist",
+    "deploy": "npm version patch && npm publish",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "author": "Carlos Daniel",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/addon-interactions": "^8.0.0",
+    "@storybook/addon-links": "^8.0.0",
+    "@storybook/addon-onboarding": "^8.0.0",
+    "@storybook/addon-styling-webpack": "^0.0.6",
+    "@storybook/blocks": "^8.0.0",
+    "@storybook/react": "^8.0.0",
+    "@storybook/react-vite": "^8.0.0",
+    "@storybook/test": "^8.0.0",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
+    "@types/react-lottie": "^1.2.10",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "storybook": "^8.0.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "flowbite": "^1.6.5",
+    "flowbite-react": "^0.4.4",
+    "react": ">=16",
+    "react-lottie-player": "^2.0.0",
+    "tailwindcss": "^3.3.6",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
+  }
 }

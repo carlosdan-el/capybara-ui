@@ -1,5 +1,5 @@
-import React, { FC, useMemo } from 'react';
-import Lottie from 'react-lottie';
+import React, { FC } from 'react';
+import Lottie from 'react-lottie-player';
 import infoAnimation from './info-animation.json';
 import successAnitation from './success-animation.json';
 import warningAnimation from './warning-animation.json';
@@ -17,30 +17,16 @@ const animations = {
     danger: dangerAnimation
 };
 
-export const Toast: FC<ToastProps> = ({
-    type = 'info',
-    message = ''
-}) => {
-    const defaultOptions = useMemo(() => {
-        return {
-            loop: true,
-            autoplay: true,
-            animationData: animations[type],
-            rendererSettings: {
-                preserveAspectRatio: 'xMidYMid slice'
-            }
-        };
-    }, [type]);
-
+export const Toast: FC<ToastProps> = ({ type = 'info', message = '' }) => {
     return (
         <div className="flex items-center w-full max-w-sm p-4 rtl:space-x-reverse text-gray-500 bg-white rounded-lg shadow-lg" role="alert">
             <div>
-                <Lottie options={defaultOptions}
-                    height={28}
-                    width={28}
-                    isStopped={false}
-                    isPaused={false}
-                    isClickToPauseDisabled
+                <Lottie
+                    loop
+                    animationData={animations[type]}
+                    play
+                    style={{ width: 28, height: 28 }}
+                    rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
                 />
             </div>
             <div className="ps-4 text-sm font-normal">{message}</div>
