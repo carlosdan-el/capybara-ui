@@ -164,13 +164,14 @@ export const Button: FC<ButtonProps> = (
         const values = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize transition-colors'];
 
         if (disabled) values.push('opacity-50');
+        values.push(getSizes(size, (label.length === 0)));
+        values.push(radius[rounded]);
+        
         if (className) {
             values.push(className);
             return values.join(' ');
         };
-
-        values.push(getSizes(size, (label.length === 0)));
-        values.push(radius[rounded]);
+        
         var colorStyles = buttonColorStyles[emphasis][color];
         values.push(colorStyles);
 
