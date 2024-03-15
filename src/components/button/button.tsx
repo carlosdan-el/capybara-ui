@@ -163,7 +163,7 @@ export const Button: FC<ButtonProps> = (
     const classes = useMemo(() => {
         if (className) return className;
 
-        const values = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize'];
+        const values = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize transition-colors'];
 
         if (disabled) values.push('opacity-50');
 
