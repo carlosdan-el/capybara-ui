@@ -56,15 +56,8 @@ export const Dialog: FC<DialogProps> = ({
                             Nam vel mattis felis, nec blandit neque. Maecenas placerat auctor quam, sed tincidunt diam cursus eu. Praesent quis porta erat. Morbi pharetra ac orci blandit lacinia. Mauris tempor nibh orci, sed sagittis lorem lobortis vel. Phasellus porttitor massa nec tempor rutrum. Sed a tellus ac ex faucibus vulputate. Nulla faucibus nunc quis accumsan ornare. Quisque id euismod mauris. Aliquam quis lectus nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
                     </div>
                     <div className="w-full flex justify-end items-center space-x-4">
-                        <Button
-                            _type={'text'}
-                            label={'Cancel'}
-                        />
-                        <Button
-                            _type="contained"
-                            emphasis="high"
-                            label={'Confirm'}
-                        />
+                        <Button label={'Cancel'} />
+                        <Button emphasis="high" label={'Confirm'} />
                     </div>
                 </HeadlessDialog.Panel>
             </div>

@@ -8,7 +8,7 @@ type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type ButtonRounded = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    colors: ButtonColors,
+    color?: ButtonColors,
     emphasis?: ButtonEmphasis
     size?: ButtonSizes
     rounded?: ButtonRounded
@@ -161,11 +161,13 @@ export const Button: FC<ButtonProps> = (
     }
 ) => {
     const classes = useMemo(() => {
-        if (className) return className;
-
         const values = ['flex items-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize transition-colors'];
 
         if (disabled) values.push('opacity-50');
+        if (className) {
+            values.push(className);
+            return values.join(' ');
+        };
 
         values.push(getSizes(size, (label.length === 0)));
         values.push(radius[rounded]);

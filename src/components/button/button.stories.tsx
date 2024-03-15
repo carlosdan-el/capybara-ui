@@ -31,9 +31,8 @@ export const Default = () => {
                     <Button
                         emphasis="high"
                         key={color}
-                        color={color}
                         label={color}
-                        colors={color}
+                        color={color}
                     />
                 ))}
             </div>
@@ -43,9 +42,7 @@ export const Default = () => {
                     <Button
                         emphasis="medium"
                         key={color}
-                        color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -57,7 +54,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -69,7 +65,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -82,7 +77,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -95,7 +89,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -108,7 +101,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -121,7 +113,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -134,7 +125,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -146,7 +136,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -158,7 +147,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -170,7 +158,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -182,7 +169,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>
@@ -194,7 +180,6 @@ export const Default = () => {
                         key={color}
                         color={color}
                         label={color}
-                        colors={color}
                     />
                 ))}
             </div>

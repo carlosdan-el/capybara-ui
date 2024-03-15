@@ -265,7 +265,6 @@ export const Table: FC<TableProps> = ({
                     <div className="w-full inline-flex space-x-4 justify-center items-center">
                         <Button
                             className="text-gray-400 focus:ring-green-300"
-                            _type="text"
                             leadingIcon={<LuMoveLeft />}
                             label="Anterior"
                             size="sm"
@@ -275,7 +274,6 @@ export const Table: FC<TableProps> = ({
                             {pagination.map((page: number | string, index: number) => (
                                 <Button
                                     key={index}
-                                    _type="text"
                                     size="sm"
                                     label={page.toString()}
                                     className={page === currentPage ? 'bg-green-50 border border-green-300 text-gray-400 focus:ring-green-300' : ' text-gray-400 focus:ring-green-300'}
@@ -285,7 +283,6 @@ export const Table: FC<TableProps> = ({
                         </div>
                         <Button
                             className="text-gray-400 focus:ring-green-300"
-                            _type="text"
                             trailingIcon={<LuMoveRight />}
                             label="Próximo"
                             size="sm"
