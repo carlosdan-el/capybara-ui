@@ -14,6 +14,8 @@ export * from './components/table/utils';
 
 export * from './hooks/use-pagination';
 
-export * from './utils';
+export * from './utils/date-to-input-date-string';
+export * from './utils/format-cpf-cnpj';
+export * from './utils/utc-date-to-local-date-string';
 
 export * from './contexts/notification-context';

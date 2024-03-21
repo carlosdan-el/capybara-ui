@@ -84,13 +84,15 @@ export const Table: FC<TableProps> = ({
         return undefined;
     };
     const handleFilterData = (data: any[], search: string) => {
-        const length = data.length;
+        const dataLength = data.length;
         const results: any[] = [];
         search = search.toLowerCase().trim();
 
-        for (let i = 0; i < length; i++) {
-            const values = Object.values(data[i]).join(' ').toLowerCase();
-            if (values.includes(search)) results.push(data[i]);
+        for (let i = 0; i < dataLength; i++) {
+            for (let j = 0; j < innerColumns.length; j++) {
+                const values = getNestedValues(innerColumns[j].key, data[i]).toString().toLowerCase();
+                if (values.includes(search)) results.push(data[i]);
+            }
         }
 
         const sortedColumn = innerColumns.find(x => x.sortableOrder);
@@ -121,7 +123,7 @@ export const Table: FC<TableProps> = ({
         const worksheet = utils.json_to_sheet(rows);
         const workbook = utils.book_new();
         utils.book_append_sheet(workbook, worksheet, 'test');
-        writeFileXLSX(workbook, "export.xlsx");
+        writeFileXLSX(workbook, `export_${new Date().toISOString().replace(/([A-Z]?(\:?\.?\-?)?)/gi, '')}.xlsx`);
     };
 
     useEffect(() => setInnerColumns(columns), [columns]);

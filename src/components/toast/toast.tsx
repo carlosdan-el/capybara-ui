@@ -17,11 +17,8 @@ const ANIMATIONS = {
     danger: dangerAnimation
 };
 
-export const Toast: FC<ToastProps> = ({ type = 'info', message = '' }) => {
-    const animationData = useMemo(() => {
-        return ANIMATIONS[type];
-    }, [type]);
-
+export const Toast: FC<ToastProps> = ({ type = 'info', message = '' }: ToastProps) => {
+    const animationData = useMemo(() => ANIMATIONS[type], [type]);
     return (
         <div className="flex items-center w-full max-w-sm p-4 rtl:space-x-reverse text-gray-500 bg-white rounded-lg shadow-lg" role="alert">
             <Lottie
