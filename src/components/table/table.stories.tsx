@@ -690,6 +690,7 @@ const TableWithPromiseData = () => {
                     name: 'Category'
                 },
             ]}
+            searchable
             data={data}
             isLoading={loading}
         />

@@ -89,10 +89,8 @@ export const Table: FC<TableProps> = ({
         search = search.toLowerCase().trim();
 
         for (let i = 0; i < dataLength; i++) {
-            for (let j = 0; j < innerColumns.length; j++) {
-                const values = getNestedValues(innerColumns[j].key, data[i]).toString().toLowerCase();
-                if (values.includes(search)) results.push(data[i]);
-            }
+            const serializedObject = JSON.stringify(data[i]).toLowerCase();
+            if(serializedObject.includes(search)) results.push(data[i]);
         }
 
         const sortedColumn = innerColumns.find(x => x.sortableOrder);
