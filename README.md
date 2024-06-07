@@ -1,17 +1,15 @@
-# avine-react-components
+# Capybara UI
 
 ## 🔎 Sobre
-Um conjunto de componentes para aplicações React, desenvolvido e projetado a fim de agilizar, 
-otimizar e padronizar o processo de desenvolvimento dos sistemas na Avine Alimentos.
+Bibliote de componentes UI para aplicações React.
 
 Obs.: 
-- Atualmente em versão beta (desenvolvimento), podendo haver alterações 
-no nome da biblioteca e remoção de componentes.
+- Atualmente em versão beta (desenvolvimento), podendo haver alterações no nome da biblioteca e remoção de componentes.
 
 ## 💻 Instalação
 
 ```sh
-npm install avine-react-components
+npm install capybara-ui
 ```
 
 ## 📖 Documentação
