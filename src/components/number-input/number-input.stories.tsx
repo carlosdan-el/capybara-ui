@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
 import { NumberInput } from './number-input';
+import { Meta, StoryFn } from '@storybook/react/*';
 
 const meta: Meta = {
     title: 'Components/Number Input',
@@ -12,8 +12,9 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn<typeof NumberInput> = args => {
+const Template: StoryFn<typeof NumberInput> = (args: any) => {
     const [value, setValue] = useState('');
+    
     return (
         <NumberInput
             value={value}

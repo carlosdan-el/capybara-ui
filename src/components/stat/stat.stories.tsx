@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Stat } from './stat';
 import React from 'react';
-import { LuDollarSign, LuTrendingUp } from 'react-icons/lu';
+import { LuTrendingUp } from 'react-icons/lu';
 
 const meta: Meta = {
     title: 'Charts/Stat',

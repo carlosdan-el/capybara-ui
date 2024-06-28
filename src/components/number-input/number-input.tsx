@@ -1,42 +1,48 @@
-import React, { ChangeEvent, FC, InputHTMLAttributes, useMemo } from 'react';
+import React, { ChangeEvent, ComponentProps, FC, useMemo } from 'react';
 
-export interface NumberInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    _size: 'sm' | 'md' | 'lg'
-}
+export interface NumberInputProps extends ComponentProps<'input'> { }
 
 const isOnlyNumbers = (value: string): boolean => {
-    if (/^(-)?(\d)*(,)?([0-9]{1})?([0-9]{1})?$/.test(value)) return true;
-    return false;
+    return /^(-)?(\d)*(,?|.?)?([0-9]{1})?([0-9]{1})?$/.test(value);
 }
 
-export const NumberInput: FC<NumberInputProps> = ({
-    placeholder = '',
-    disabled = false,
-    value,
-    onChange,
-    _size = 'md',
-    ...props
-}) => {
-    const sizeClasses = useMemo(() => {
-        const classes = {
-            sm: 'p-2 sm:text-xs',
-            md: 'p-2.5 text-sm',
-            lg: 'p-4 sm:Text-md'
-        };
-        return classes[_size];
-    }, [_size]);
+export const NumberInput: FC<NumberInputProps> = (props: NumberInputProps) => {
+    const classes = useMemo(() => {
+        if (props.className) return props.className;
+
+        const defaultClasses = [
+            'w-full',
+            'border',
+            'text-sm',
+            'rounded-xl',
+            'block',
+            'p-2.5',
+            'bg-gray-50',
+            'border-gray-300',
+            'hover:bg-green-100',
+            'hover:border-green-500',
+            'focus:bg-gray-50',
+            'focus:ring-green-500',
+            'focus:border-green-500',
+            'outline-green-500'
+        ];
+
+        if (props.disabled || props.readOnly) {
+            defaultClasses.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
+        }
+
+        return defaultClasses.join(' ');
+    }, [props]);
     const setAllowedValue = (element: ChangeEvent<HTMLInputElement>): void => {
-        if (isOnlyNumbers(element.target.value) && onChange) onChange(element);
+        if (isOnlyNumbers(element.target.value) && props.onChange) {
+            props.onChange(element);
+        }
     };
 
     return (
         <input
-            className={`block text-gray-900 ${sizeClasses} border border-gray-300 rounded-lg bg-gray-50 outline-none focus:ring-green-500 focus:border-green-500 ${disabled ? 'opacity-50' : ''}`}
-            type="text"
-            placeholder={placeholder}
-            value={value}
+            className={classes}
             onChange={setAllowedValue}
-            disabled={disabled}
             {...props}
         />
     );

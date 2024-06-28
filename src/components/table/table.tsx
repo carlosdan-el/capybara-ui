@@ -4,7 +4,6 @@ import { getNestedValues, sortData } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp, LuMoveLeft, LuMoveRight } from 'react-icons/lu';
 import { Menu } from '@headlessui/react';
 import { Button } from '../button/button';
-import { utils, writeFileXLSX } from "xlsx";
 
 export interface TableProps {
     columns: Array<TableColumn>
@@ -118,10 +117,10 @@ export const Table: FC<TableProps> = ({
             rows.push(row);
         }
 
-        const worksheet = utils.json_to_sheet(rows);
-        const workbook = utils.book_new();
-        utils.book_append_sheet(workbook, worksheet, 'test');
-        writeFileXLSX(workbook, `export_${new Date().toISOString().replace(/([A-Z]?(\:?\.?\-?)?)/gi, '')}.xlsx`);
+        //const worksheet = utils.json_to_sheet(rows);
+        //const workbook = utils.book_new();
+        //utils.book_append_sheet(workbook, worksheet, 'test');
+        //writeFileXLSX(workbook, `export_${new Date().toISOString().replace(/([A-Z]?(\:?\.?\-?)?)/gi, '')}.xlsx`);
     };
 
     useEffect(() => setInnerColumns(columns), [columns]);

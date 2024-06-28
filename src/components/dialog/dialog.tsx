@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Dialog as HeadlessDialog } from '@headlessui/react';
 import { Button } from '../button/button';
 

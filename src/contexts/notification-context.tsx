@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
-import { Toast, ToastProps } from "../components/toast/toast";
+import { Toast, ToastProps } from "../components/toast/toast.js";
 
 type NotificationContextProps = {
     addNotification: (toast: ToastProps) => void

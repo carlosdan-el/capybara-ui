@@ -21,7 +21,7 @@ npm install capybara-ui
 - [] - Context Menu
 - [x] - Button
 - [x] - Table
-- [] - Datagrid
+- [] - DataGrid
 - [x] - Checkbox
 - [x] - Text Input
 - [x] - Number Input
@@ -37,3 +37,9 @@ npm install capybara-ui
 - [] - Loading Context
 - [x] - Notification Context
 - [] - Theme Context
+
+## Imports
+``` jsx
+import { Input, Label } from 'capybara-ui/base'; // Base Components
+import { DataGrid, Badge } from 'capybara-ui/components'; // Custom Components
+```
