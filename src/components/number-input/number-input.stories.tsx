@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NumberInput } from './number-input';
-import { Meta, StoryFn } from '@storybook/react/*';
+import { Meta, StoryFn } from '@storybook/react';
 
 const meta: Meta = {
     title: 'Components/Number Input',

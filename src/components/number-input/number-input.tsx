@@ -1,14 +1,14 @@
-import React, { ChangeEvent, ComponentProps, FC, useMemo } from 'react';
+import React, { ChangeEvent, ComponentProps, FC, useMemo, useState } from 'react';
 
 export interface NumberInputProps extends ComponentProps<'input'> { }
 
 const isOnlyNumbers = (value: string): boolean => {
-    return /^(-)?(\d)*(,?|.?)?([0-9]{1})?([0-9]{1})?$/.test(value);
+    return /^[0-9]*(\,?|\.?)?[0-9]*?$/.test(value);
 }
 
-export const NumberInput: FC<NumberInputProps> = (props: NumberInputProps) => {
+export const NumberInput: FC<NumberInputProps> = ({ onChange, ...rest }: NumberInputProps) => {
     const classes = useMemo(() => {
-        if (props.className) return props.className;
+        if (rest.className) return rest.className;
 
         const defaultClasses = [
             'w-full',
@@ -18,32 +18,32 @@ export const NumberInput: FC<NumberInputProps> = (props: NumberInputProps) => {
             'block',
             'p-2.5',
             'bg-gray-50',
-            'border-gray-300',
-            'hover:bg-green-100',
-            'hover:border-green-500',
+            'border-blue-300',
+            'hover:border-blue-500',
             'focus:bg-gray-50',
-            'focus:ring-green-500',
-            'focus:border-green-500',
-            'outline-green-500'
+            'focus:ring-blue-500',
+            'focus:border-blue-500',
+            'outline-blue-500'
         ];
 
-        if (props.disabled || props.readOnly) {
+        if (rest.disabled || rest.readOnly) {
             defaultClasses.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
         }
 
         return defaultClasses.join(' ');
-    }, [props]);
-    const setAllowedValue = (element: ChangeEvent<HTMLInputElement>): void => {
-        if (isOnlyNumbers(element.target.value) && props.onChange) {
-            props.onChange(element);
+    }, [rest]);
+    const setAllowedValue = (element: React.ChangeEvent<HTMLInputElement>): void => {
+        if (isOnlyNumbers(element.target.value.trim()) &&
+            onChange) {
+            onChange(element);
         }
     };
 
     return (
         <input
             className={classes}
-            onChange={setAllowedValue}
-            {...props}
+            onChange={e => setAllowedValue(e)}
+            {...rest}
         />
     );
 };
