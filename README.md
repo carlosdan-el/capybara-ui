@@ -1,4 +1,4 @@
-# Capybara UI
+# Capivara UI
 
 ## 🔎 Sobre
 Bibliote de componentes UI para aplicações React.
@@ -9,7 +9,7 @@ Obs.:
 ## 💻 Instalação
 
 ```sh
-npm install capybara-ui
+npm install capivara-ui
 ```
 
 ## 📖 Documentação
@@ -40,6 +40,6 @@ npm install capybara-ui
 
 ## Imports
 ``` jsx
-import { Input, Label } from 'capybara-ui/base'; // Base Components
-import { DataGrid, Badge } from 'capybara-ui/components'; // Custom Components
+import { Input, Label } from 'capivara-ui/base'; // Base Components
+import { DataGrid, Badge } from 'capivara-ui/components'; // Custom Components
 ```

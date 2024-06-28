@@ -1,6 +1,6 @@
 {
-  "name": "capybara-ui",
-  "version": "0.0.4",
+  "name": "capivara-ui",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "",
   "main": "dist/index.js",
