@@ -4,11 +4,6 @@
   "license": "MIT",
   "description": "",
   "main": "dist/index.js",
-  "exports": {
-    ".": "./dist/index.js",
-    "./base": "./dist/base",
-    "./components": "./dist/components"
-  },
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
