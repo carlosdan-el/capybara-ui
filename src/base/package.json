@@ -1,6 +1,0 @@
-{
-    "exports": {
-        ".": "./dist/base/index.js",
-        "./*": "./dist/base/*.js"
-    }
-}

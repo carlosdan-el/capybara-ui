@@ -1,6 +1,0 @@
-{
-    "exports": {
-        ".": "./dist/components/index.js",
-        "./*": "./dist/components/*.js"
-    }
-}
