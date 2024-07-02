@@ -20,7 +20,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup src --clean --out-dir dist",
-    "prepare": "tsup src --clean --out-dir dist",
     "deploy": "npm version patch && tsup src --clean --out-dir dist && cp package.json dist && cd dist && npm publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
