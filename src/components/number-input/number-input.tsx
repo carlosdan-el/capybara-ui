@@ -1,4 +1,5 @@
-import React, { ChangeEvent, ComponentProps, FC, useMemo, useState } from 'react';
+import React, { ComponentProps, FC } from 'react';
+import Input from '../../base/input/input';
 
 export interface NumberInputProps extends ComponentProps<'input'> { }
 
@@ -7,31 +8,6 @@ const isOnlyNumbers = (value: string): boolean => {
 }
 
 export const NumberInput: FC<NumberInputProps> = ({ onChange, ...rest }: NumberInputProps) => {
-    const classes = useMemo(() => {
-        if (rest.className) return rest.className;
-
-        const defaultClasses = [
-            'w-full',
-            'border',
-            'text-sm',
-            'rounded-xl',
-            'block',
-            'p-2.5',
-            'bg-gray-50',
-            'border-blue-300',
-            'hover:border-blue-500',
-            'focus:bg-gray-50',
-            'focus:ring-blue-500',
-            'focus:border-blue-500',
-            'outline-blue-500'
-        ];
-
-        if (rest.disabled || rest.readOnly) {
-            defaultClasses.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
-        }
-
-        return defaultClasses.join(' ');
-    }, [rest]);
     const setAllowedValue = (element: React.ChangeEvent<HTMLInputElement>): void => {
         if (isOnlyNumbers(element.target.value.trim()) &&
             onChange) {
@@ -40,8 +16,7 @@ export const NumberInput: FC<NumberInputProps> = ({ onChange, ...rest }: NumberI
     };
 
     return (
-        <input
-            className={classes}
+        <Input
             onChange={e => setAllowedValue(e)}
             {...rest}
         />
