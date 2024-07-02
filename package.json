@@ -3,17 +3,8 @@
   "version": "0.1.7",
   "license": "MIT",
   "description": "",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js",
-    "./base": "./dist/base/index.js",
-    "./components": "./dist/components/index.js"
-  },
-  "files": [
-    "dist",
-    "src"
-  ],
+  "main": "index.js",
+  "typings": "index.d.ts",
   "engines": {
     "node": ">=12"
   },
