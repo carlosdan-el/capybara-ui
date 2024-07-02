@@ -1,8 +1,8 @@
-import React, { ComponentProps, useMemo } from 'react';
+import React, { ComponentProps, FC, useMemo } from 'react';
 
 export interface InputProps extends ComponentProps<'input'> { }
 
-export default function Input(props: InputProps) {
+export const Input: FC<InputProps> = (props) => {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
@@ -35,4 +35,4 @@ export default function Input(props: InputProps) {
             className={classes}
         />
     );
-}
+};

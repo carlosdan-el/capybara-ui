@@ -1,5 +1,5 @@
 import React, { ComponentProps, FC } from 'react';
-import Input from '../../base/input/input';
+import { Input } from '../../base';
 
 export interface NumberInputProps extends ComponentProps<'input'> { }
 

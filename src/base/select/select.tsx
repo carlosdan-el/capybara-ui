@@ -1,8 +1,8 @@
-import React, { ComponentProps, useMemo } from 'react';
+import React, { ComponentProps, FC, useMemo } from 'react';
 
 export interface SelectProps extends ComponentProps<'select'> { }
 
-export default function Select(props: SelectProps) {
+export const Select: FC<SelectProps> = (props) => {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
@@ -34,4 +34,4 @@ export default function Select(props: SelectProps) {
             {props.children}
         </select>
     );
-}
+};
