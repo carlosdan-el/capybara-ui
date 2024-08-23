@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { Dialog as HeadlessDialog } from '@headlessui/react';
-import { Button } from '../button/button';
+import Button from '../../base/button/button';
 
 export type DialogProps = {
     size: 'sm' | 'md' | 'lg' | 'xl' | 'full'
@@ -56,8 +56,8 @@ export const Dialog: FC<DialogProps> = ({
                             Nam vel mattis felis, nec blandit neque. Maecenas placerat auctor quam, sed tincidunt diam cursus eu. Praesent quis porta erat. Morbi pharetra ac orci blandit lacinia. Mauris tempor nibh orci, sed sagittis lorem lobortis vel. Phasellus porttitor massa nec tempor rutrum. Sed a tellus ac ex faucibus vulputate. Nulla faucibus nunc quis accumsan ornare. Quisque id euismod mauris. Aliquam quis lectus nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
                     </div>
                     <div className="w-full flex justify-end items-center space-x-4">
-                        <Button label={'Cancel'} />
-                        <Button emphasis="high" label={'Confirm'} />
+                        <Button color="green" emphasis="low">Cancel</Button>
+                        <Button color="green">Confirm</Button>
                     </div>
                 </HeadlessDialog.Panel>
             </div>

@@ -3,7 +3,7 @@ import { usePagination } from '../../hooks/use-pagination';
 import { getNestedValues, sortData } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp, LuMoveLeft, LuMoveRight } from 'react-icons/lu';
 import { Menu } from '@headlessui/react';
-import { Button } from '../button/button';
+import Button from '../../base/button/button';
 
 export interface TableProps {
     columns: Array<TableColumn>
@@ -89,7 +89,7 @@ export const Table: FC<TableProps> = ({
 
         for (let i = 0; i < dataLength; i++) {
             const serializedObject = JSON.stringify(data[i]).toLowerCase();
-            if(serializedObject.includes(search)) results.push(data[i]);
+            if (serializedObject.includes(search)) results.push(data[i]);
         }
 
         const sortedColumn = innerColumns.find(x => x.sortableOrder);
@@ -262,31 +262,21 @@ export const Table: FC<TableProps> = ({
             {(!isLoading && innerData.length > itemsPerPage) &&
                 <nav className="w-full flex justify-end mt-6 px-4">
                     <div className="w-full inline-flex space-x-4 justify-center items-center">
-                        <Button
-                            className="text-gray-400 focus:ring-green-300"
-                            leadingIcon={<LuMoveLeft />}
-                            label="Anterior"
-                            size="sm"
-                            onClick={handlePreviousPage}
-                        />
+                        <Button color="green" emphasis="low" size="sm" className="text-gray-400 focus:ring-green-300" onClick={handlePreviousPage}>
+                            <LuMoveLeft className="mr-2" />
+                            Anterior
+                        </Button>
                         <div className="flex items-center space-x-2">
                             {pagination.map((page: number | string, index: number) => (
-                                <Button
-                                    key={index}
-                                    size="sm"
-                                    label={page.toString()}
-                                    className={page === currentPage ? 'bg-green-50 border border-green-300 text-gray-400 focus:ring-green-300' : ' text-gray-400 focus:ring-green-300'}
-                                    onClick={typeof page === 'number' ? () => handlePageChange(page) : undefined}
-                                />
+                                <Button key={index} color="green" emphasis="low" size="sm" className="text-gray-400 focus:ring-green-300" onClick={typeof page === 'number' ? () => handlePageChange(page) : undefined}>
+                                    page.toString()
+                                </Button>
                             ))}
                         </div>
-                        <Button
-                            className="text-gray-400 focus:ring-green-300"
-                            trailingIcon={<LuMoveRight />}
-                            label="Próximo"
-                            size="sm"
-                            onClick={handleNextPage}
-                        />
+                        <Button color="green" emphasis="low" size="sm" className="text-gray-400 focus:ring-green-300" onClick={handleNextPage}>
+                            <LuMoveRight className="mr-2" />
+                            Próximo
+                        </Button>
                     </div>
                 </nav>
             }
