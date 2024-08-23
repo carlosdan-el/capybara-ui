@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { Dialog as HeadlessDialog } from '@headlessui/react';
-import Button from '../../base/button/button';
+import { Button } from '../../base';
 
 export type DialogProps = {
     size: 'sm' | 'md' | 'lg' | 'xl' | 'full'

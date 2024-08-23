@@ -3,7 +3,7 @@ import { usePagination } from '../../hooks/use-pagination';
 import { getNestedValues, sortData } from './utils';
 import { LuSearch, LuDownload, LuMoreVertical, LuChevronDown, LuChevronUp, LuMoveLeft, LuMoveRight } from 'react-icons/lu';
 import { Menu } from '@headlessui/react';
-import Button from '../../base/button/button';
+import { Button } from '../../base';
 
 export interface TableProps {
     columns: Array<TableColumn>
