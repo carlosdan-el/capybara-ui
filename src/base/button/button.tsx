@@ -125,7 +125,7 @@ const radiusClasses = {
     full: 'rounded-full'
 };
 
-export default function Button({
+export function Button({
     size = 'md',
     emphasis = 'high',
     rounded = 'md',
