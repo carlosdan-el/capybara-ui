@@ -6,7 +6,7 @@ export const Select: FC<SelectProps> = (props) => {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
-        const defaultClasses = [
+        const values = [
             'w-full',
             'border',
             'text-sm',
@@ -23,10 +23,10 @@ export const Select: FC<SelectProps> = (props) => {
         ];
 
         if (props.disabled) {
-            defaultClasses.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
+            values.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
         }
 
-        return defaultClasses.join(' ');
+        return values.join(' ');
     }, [props]);
 
     return (

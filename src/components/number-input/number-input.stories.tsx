@@ -17,6 +17,7 @@ const Template: StoryFn<typeof NumberInput> = (args: any) => {
     
     return (
         <NumberInput
+        _size='md'
             value={value}
             onChange={e => setValue(e.target.value)}
             {...args}

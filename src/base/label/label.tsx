@@ -6,13 +6,13 @@ export const Label: FC<LabelProps> = (props) => {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
-        const defaultClasses = [
+        const values = [
             'block',
             'text-sm',
             'font-medium'
         ];
 
-        return defaultClasses.join(' ');
+        return values.join(' ');
     }, [props]);
 
     return (

@@ -1,18 +1,27 @@
 import React, { ComponentProps, FC, useMemo } from 'react';
 
-export interface InputProps extends ComponentProps<'input'> { }
+type inputSizes = 'sm' | 'md' | 'lg';
 
-export const Input: FC<InputProps> = (props) => {
+export interface InputProps extends ComponentProps<'input'> {
+    _size: inputSizes
+}
+
+const sizeClasses = {
+    'sm': 'p-2',
+    'md': 'p-2.5',
+    'lg': 'p-3'
+};
+
+export const Input: FC<InputProps> = ({ _size = 'md', ...props }) => {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
-        const defaultClasses = [
+        const values = [
             'w-full',
             'border',
             'text-sm',
             'rounded-xl',
             'block',
-            'p-2.5',
             'bg-gray-50',
             'border-gray-300',
             'hover:border-blue-500',
@@ -22,17 +31,21 @@ export const Input: FC<InputProps> = (props) => {
             'outline-blue-500'
         ];
 
+        values.push(sizeClasses[_size]);
+
         if (props.disabled || props.readOnly) {
-            defaultClasses.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
+            values.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
         }
 
-        return defaultClasses.join(' ');
+        return values.join(' ');
     }, [props]);
 
     return (
-        <input
-            {...props}
-            className={classes}
-        />
+        <div>
+            <input
+                {...props}
+                className={classes}
+            />
+        </div>
     );
 };

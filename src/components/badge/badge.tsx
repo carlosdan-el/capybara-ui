@@ -1,9 +1,8 @@
 import React, { FC, HTMLAttributes, useMemo } from 'react';
+import Colors from '../../utils/colors';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-    type: 'slate' | 'gray' | 'zinc' | 'neutral' | 'stone' | 'red' | 'orange' |
-    'amber' | 'yellow' | 'lime' | 'green' | 'blue' | 'indigo' | 'purple' | 'pink' |
-    'emerald' | 'teal' | 'cyan' | 'sky' | 'violet' | 'fuchsia' | 'rose'
+    type: Colors
     size: 'md' | 'lg'
     label: string
     badgeStyle: 'dotted' | 'normal'
