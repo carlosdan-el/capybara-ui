@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import TextArea from './text-area';
+import { TextArea } from './text-area';
 
 const DefaultTextArea = () => {
     const [value, setValue] = useState('');
     return (
-        <TextArea value={value} onChange={e => setValue(e.target.value)}/>
+        <TextArea value={value} onChange={e => setValue(e.target.value)} />
     );
 }
 
