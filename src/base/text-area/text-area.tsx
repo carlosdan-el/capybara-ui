@@ -6,7 +6,7 @@ export interface TextAreaProps extends ComponentProps<'textarea'> {
     maxLength?: number
 }
 
-export default function TextArea({ onChange, ...props }: TextAreaProps) {
+export function TextArea({ onChange, ...props }: TextAreaProps) {
     const textAreaElement = useRef<HTMLTextAreaElement | null>(null);
     const classes = useMemo(() => {
         if (props.className) return props.className;
