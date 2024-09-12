@@ -1,4 +1,4 @@
-import React, { ComponentProps, useMemo, useRef } from "react";
+import React, { ComponentProps, useEffect, useMemo, useRef } from "react";
 
 const MIN_HEIGHT = 62;
 
@@ -26,16 +26,13 @@ export function TextArea({ onChange, ...props }: TextAreaProps) {
             'outline-blue-500',
             'disabled:bg-gray-100',
             'disabled:border-transparent',
-            'disabled:text-zinc-500',
-            'disabled:resize-none',
-            'disabled:overflow-hidden',
-            'disabled:pointer-events-none'
+            'disabled:resize-none'
         ];
 
         return values.join(' ');
     }, []);
     const onChangeValue = (element: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const textArea: HTMLTextAreaElement = textAreaElement.current!;
+        const textArea: HTMLTextAreaElement | null = textAreaElement.current;
         if (textArea && textArea.scrollHeight > MIN_HEIGHT) {
             textArea.style.height = `${textArea.scrollHeight + 2}px`;
         }
@@ -44,6 +41,13 @@ export function TextArea({ onChange, ...props }: TextAreaProps) {
         }
         if (onChange) onChange(element);
     };
+
+    useEffect(() => {
+        const textArea: HTMLTextAreaElement | null = textAreaElement.current;
+        if (textArea && textArea.scrollHeight > MIN_HEIGHT) {
+            textArea.style.height = `${textArea.scrollHeight + 2}px`;
+        }
+    }, []);
 
     return (
         <textarea
