@@ -28,7 +28,13 @@ export const Input: FC<InputProps> = ({ _size = 'md', ...props }) => {
             'focus:bg-gray-50',
             'focus:ring-blue-500',
             'focus:border-blue-500',
-            'outline-blue-500'
+            'outline-blue-500',
+            'disabled:bg-gray-100',
+            'disabled:border-transparent',
+            'disabled:text-zinc-500',
+            'disabled:resize-none',
+            'disabled:overflow-hidden',
+            'disabled:pointer-events-none'
         ];
 
         values.push(sizeClasses[_size]);

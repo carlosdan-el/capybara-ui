@@ -134,14 +134,27 @@ export function Button({
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
-        const values = ['flex items-center justify-center flex-nowrap whitespace-nowrap focus:outline-none focus:ring-4 font-medium capitalize transition-colors'];
+        const values = [
+            'flex',
+            'items-center',
+            'justify-center', 'flex-nowrap',
+            'whitespace-nowrap',
+            'focus:outline-none',
+            'focus:ring-4',
+            'font-medium',
+            'capitalize',
+            'transition-colors',
+            'disabled:cursor-not-allowed',
+            'disabled:opacity-50',
+            'disabled:pointer-events-none'
+        ];
 
         values.push(sizeClasses[size]);
         values.push(colorClasses[emphasis][props.color]);
         values.push(radiusClasses[rounded]);
 
         if (props.disabled) {
-            values.push('cursor-not-allowed opacity-50');
+            values.push('');
         }
 
         return values.join(' ');
