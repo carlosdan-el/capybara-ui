@@ -1,41 +1,43 @@
 # Capivara UI
 
-## 🔎 Sobre
-Bibliote de componentes UI para aplicações React.
+## ⚠️ Disclaimer
+Although I'm already using this library in some personal project and freelance jobs, the original and unique purpose of the library is to practice and improve my knowledge's in Javascript, React and Typescript.
 
-Obs.: 
-- Atualmente em versão beta (desenvolvimento), podendo haver alterações no nome da biblioteca e remoção de componentes.
+This library is in development.
 
-## 💻 Instalação
+## 🔎 About
+A library of UI components to React Applications.
+
+## 💻 Installation
 
 ```sh
 npm install capivara-ui
 ```
 
-## 📖 Documentação
-- Icones: https://boxicons.com/
+## 📖 Documentations
+- Icones: https://lucide.dev/
 
 ## Components
 - [] - Alert
 - [] - Avatar
 - [] - Context Menu
-- [x] - Button
-- [x] - Table
+- [x] - Button - ✅
+- [x] - Table - ⚠️
 - [] - DataGrid
-- [x] - Checkbox
-- [x] - Text Input
+- [x] - Checkbox - ⚠️
+- [x] - Text Input - ✅
 - [x] - Number Input
-- [x] - Toast
+- [x] - Toast - ✅
 - [] - Dialog
-- [x] - Badge
+- [x] - Badge - ✅
 - [] - Switch
 - [] - Tabs
-- [] - Text Area
-- [] - Progress
+- [x] - Text Area - ✅
+- [] - Progress Bar
 
 ## Contexts
 - [] - Loading Context
-- [x] - Notification Context
+- [] - Notification Context
 - [] - Theme Context
 
 ## Imports
@@ -43,3 +45,6 @@ npm install capivara-ui
 import { Input, Label } from 'capivara-ui/base'; // Base Components
 import { DataGrid, Badge } from 'capivara-ui/components'; // Custom Components
 ```
+
+## Disclaimer
+

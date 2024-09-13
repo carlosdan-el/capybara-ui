@@ -19,8 +19,8 @@ const Template: StoryFn<CheckboxProps> = args => <Checkbox {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    id: 'default-checkbox',
-    rounded: true,
+    id: 'chkbx',
+    rounded: false,
     hidden: false,
     disabled: false
 };

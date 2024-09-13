@@ -14,6 +14,7 @@ const UTCDateToLocalDateString = (
     const hour = date.getHours();
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
+    
     return `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year} ${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 };
 

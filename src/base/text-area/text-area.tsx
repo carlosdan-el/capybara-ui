@@ -11,7 +11,7 @@ export function TextArea({ onChange, ...props }: TextAreaProps) {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
-        const values = [
+        const defaultValues = [
             'w-full',
             'border',
             'text-sm',
@@ -29,7 +29,11 @@ export function TextArea({ onChange, ...props }: TextAreaProps) {
             'disabled:resize-none'
         ];
 
-        return values.join(' ');
+        if (props.disabled || props.readOnly) {
+            defaultValues.push('resize-none');
+        }
+
+        return defaultValues.join(' ');
     }, []);
     const onChangeValue = (element: React.ChangeEvent<HTMLTextAreaElement>) => {
         const textArea: HTMLTextAreaElement | null = textAreaElement.current;
