@@ -17,8 +17,8 @@ export function Checkbox({
         if (props.className) return props.className;
 
         const defaultValues = [
-            'w-40',
-            'h-40',
+            'w-4',
+            'h-4',
             'bg-gray-100',
             'border-gray-300',
             'dark:ring-offset-gray-800',
