@@ -10,8 +10,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup src --clean --out-dir dist",
-    "deploy": "npm version patch && tsup src --clean --out-dir dist && cp package.json dist && cd dist && npm publish",
+    "build": "NODE_OPTIONS='--max-old-space-size=16384' tsup src --clean --out-dir dist",
+    "deploy": "NODE_OPTIONS='--max-old-space-size=16384' npm version patch && tsup src --clean --out-dir dist && cp package.json dist && cd dist && npm publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -30,16 +30,17 @@
     "@storybook/react": "^8.3.0",
     "@storybook/react-vite": "^8.3.0",
     "@storybook/test": "^8.3.0",
-    "@types/react": "^18.3.5",
+    "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "@types/react-lottie": "^1.2.10",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.45",
+    "postcss": "^8.4.47",
     "react": "^18.2.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "storybook": "^8.3.0",
     "storybook-dark-mode": "^4.0.2",
+    "storybook-react-context": "^0.7.0",
     "tsup": "^8.2.4",
     "typescript": "^5.6.2"
   },
@@ -49,6 +50,6 @@
     "flowbite-react": "^0.10.1",
     "react": "^16 || ^17 || ^18",
     "react-lottie-player": "^2.1.0",
-    "tailwindcss": "^3.4.11"
+    "tailwindcss": "^3.4.12"
   }
 }
