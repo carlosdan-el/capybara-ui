@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { ImageGallery, ImageGalleryItem, ImageGalleryItems, ImageGalleryProps, ImageGalleryTitle } from './image-gallery';
-import { ImageFullScreenContainer } from '../image-full-screen-container/image-full-screen-container';
+import { ImageFullScreenContainer } from '../../components';
 
 const MyImageGallery = () => {
     const id = 'rnr-image-fs-container';
@@ -26,7 +26,7 @@ const MyImageGallery = () => {
                     imageFullScreenContainerId={id}
                 />
             </ImageGalleryItems>
-            <ImageFullScreenContainer id={id}/>
+            <ImageFullScreenContainer id={id} />
         </ImageGallery>
     );
 };

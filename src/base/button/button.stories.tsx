@@ -4,7 +4,7 @@ import { Heading } from "../../typography/heading/heading.js";
 import { Button, ButtonProps } from "./button.js";
 
 const meta: Meta = {
-    title: 'Components/Button',
+    title: 'Base/Button',
     component: Button,
     parameters: {
         controls: {

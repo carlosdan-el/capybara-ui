@@ -10,7 +10,7 @@ const DefaultTextArea = () => {
 }
 
 export default {
-    title: 'Components/Text Area',
+    title: 'Base/Text Area',
     component: DefaultTextArea
 } as Meta<typeof DefaultTextArea>;
 

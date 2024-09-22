@@ -1,9 +1,7 @@
 import React, { ComponentProps, useMemo } from "react";
-import { Image } from "../../base/image/image";
+import { Image } from "../../base";
 
-export interface ImageGalleryProps extends ComponentProps<'div'> {
-
-}
+export interface ImageGalleryProps extends ComponentProps<'div'> { }
 
 export function ImageGallery({
     children,

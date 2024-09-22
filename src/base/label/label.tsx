@@ -1,8 +1,8 @@
-import React, { ComponentProps, FC, useMemo } from 'react';
+import React, { ComponentProps, useMemo } from 'react';
 
 export interface LabelProps extends ComponentProps<'label'> { }
 
-export const Label: FC<LabelProps> = (props) => {
+export function Label(props: LabelProps) {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 

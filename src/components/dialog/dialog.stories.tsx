@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Dialog } from './dialog';
 
 const meta: Meta = {
-    title: 'Dialog',
+    title: 'Components/Dialog',
     component: Dialog,
     parameters: {
         controls: { expanded: true },

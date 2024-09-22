@@ -1,12 +1,12 @@
-import React, { ComponentProps, FC, useMemo } from 'react';
+import React, { ComponentProps, useMemo } from 'react';
 
 export interface SelectProps extends ComponentProps<'select'> { }
 
-export const Select: FC<SelectProps> = (props) => {
+export function Select(props: SelectProps) {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
-        const defaultValues = [
+        const values = [
             'w-full',
             'border',
             'text-sm',
@@ -23,10 +23,10 @@ export const Select: FC<SelectProps> = (props) => {
         ];
 
         if (props.disabled) {
-            defaultValues.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
+            values.push('disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-50');
         }
 
-        return defaultValues.join(' ');
+        return values.join(' ');
     }, [props]);
 
     return (

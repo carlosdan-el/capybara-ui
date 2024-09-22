@@ -1,4 +1,4 @@
-import React, { ComponentProps, FC, useMemo } from 'react';
+import React, { ComponentProps, useMemo } from 'react';
 
 type inputSizes = 'sm' | 'md' | 'lg';
 
@@ -6,13 +6,13 @@ export interface InputProps extends ComponentProps<'input'> {
     _size: inputSizes
 }
 
-const sizeClasses = {
-    'sm': 'p-2',
-    'md': 'p-2.5',
-    'lg': 'p-3'
+const sizeClasses: { [key: string]: string } = {
+    sm: 'p-2',
+    md: 'p-2.5',
+    lg: 'p-3'
 };
 
-export const Input: FC<InputProps> = ({ _size = 'md', ...props }) => {
+export function Input({ _size = 'md', ...props }) {
     const classes = useMemo(() => {
         if (props.className) return props.className;
 
@@ -45,11 +45,9 @@ export const Input: FC<InputProps> = ({ _size = 'md', ...props }) => {
     }, [props]);
 
     return (
-        <div>
-            <input
-                {...props}
-                className={classes}
-            />
-        </div>
+        <input
+            {...props}
+            className={classes}
+        />
     );
 };

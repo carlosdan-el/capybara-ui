@@ -1,4 +1,4 @@
-import React, { ComponentProps, useContext, useMemo, useState } from "react";
+import React, { ComponentProps, useMemo } from "react";
 
 export interface ImageProps extends ComponentProps<'img'> {
     imageFullScreenContainerId?: string

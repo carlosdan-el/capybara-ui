@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Input, InputProps } from '../../base';
 
 const isOnlyNumbers = (value: string): boolean => {
     return /^[0-9]*(\,?|\.?)?[0-9]*?$/.test(value);
 }
 
-export const NumberInput: FC<InputProps> = ({ onChange, ...rest }) => {
+export function NumberInput({ onChange, ...props }: InputProps) {
     const setAllowedValue = (element: React.ChangeEvent<HTMLInputElement>): void => {
         if (isOnlyNumbers(element.target.value.trim()) &&
             onChange) {
@@ -15,8 +15,8 @@ export const NumberInput: FC<InputProps> = ({ onChange, ...rest }) => {
 
     return (
         <Input
-            onChange={e => setAllowedValue(e)}
-            {...rest}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAllowedValue(e)}
+            {...props}
         />
     );
-};
+}
