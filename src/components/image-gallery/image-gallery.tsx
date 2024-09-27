@@ -91,7 +91,7 @@ export function ImageGalleryItem(props: ImageGalleryItemProps) {
             'bg-zinc-300',
             'rounded-3xl',
             'overflow-hidden',
-            'aspect-[16/9]',
+            'aspect-[1/1]',
             'relative'
         ];
 
@@ -100,14 +100,12 @@ export function ImageGalleryItem(props: ImageGalleryItemProps) {
 
     return (
         <div className={classes}>
-            <figure>
-                <Image
-                    src={props.src}
-                    alt={props.alt}
-                    title={props.title}
-                    imageFullScreenContainerId={props.imageFullScreenContainerId}
-                />
-            </figure>
+            <Image
+                src={props.src}
+                alt={props.alt}
+                title={props.title}
+                imageFullScreenContainerId={props.imageFullScreenContainerId}
+            />
         </div>
     );
 }

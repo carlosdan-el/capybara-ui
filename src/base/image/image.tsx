@@ -13,6 +13,7 @@ export function Image({
         if (props.className) return props.className;
 
         const values = [
+            'w-full',
             'h-full',
             'object-cover',
             'object-center'
