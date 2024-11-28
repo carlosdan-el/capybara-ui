@@ -1,12 +1,13 @@
 import React, { ComponentProps, useMemo } from 'react';
 
-type inputSizes = 'sm' | 'md' | 'lg';
+type inputSizes = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface InputProps extends ComponentProps<'input'> {
     _size: inputSizes
 }
 
 const sizeClasses: { [key: string]: string } = {
+    xs: 'p-1.5',
     sm: 'p-2',
     md: 'p-2.5',
     lg: 'p-3'

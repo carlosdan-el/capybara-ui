@@ -126,6 +126,7 @@ const radiusClasses = {
 };
 
 export function Button({
+    type,
     size = 'md',
     emphasis = 'high',
     rounded = 'md',
@@ -161,7 +162,7 @@ export function Button({
     }, [props, size, emphasis, rounded]);
 
     return (
-        <button className={classes} {...props}>
+        <button type={type ?? 'button'} className={classes} {...props}>
             {props.children}
         </button>
     );

@@ -14,6 +14,7 @@ export function Table({
                 'text-sm',
                 'text-left',
                 'text-zinc-600',
+                'mt-8',
                 props.className
             )}>
                 {children}
@@ -26,7 +27,10 @@ export interface TableBodyProps extends ComponentProps<'tbody'> { }
 
 export function TableBody({ children, ...props }: TableBodyProps) {
     return (
-        <tbody {...props}>
+        <tbody {...props} className={cn(
+            'overflow-y-auto',
+            props.className
+        )}>
             {children}
         </tbody>
     );
@@ -41,6 +45,7 @@ export function TableCell({ children, ...props }: TableCellProps) {
             'px-6',
             'whitespace-nowrap',
             'text-zinc-900',
+            'relative',
             props.className
         )}>
             {children}
@@ -69,6 +74,7 @@ export function TableHead({ children, ...props }: TableHeadProps) {
             'font-normal',
             'first:rounded-s-lg',
             'last:rounded-e-lg',
+            'relative',
             props.className
         )}>
             {children}
