@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import Lottie from 'react-lottie-player';
 import infoAnimation from './info-animation.json';
-import successAnitation from './success-animation.json';
+import successAnimation from './success-animation.json';
 import warningAnimation from './warning-animation.json';
 import dangerAnimation from './danger-animation.json';
 
@@ -12,7 +12,7 @@ export interface ToastProps {
 
 const ANIMATIONS = {
     info: infoAnimation,
-    success: successAnitation,
+    success: successAnimation,
     warning: warningAnimation,
     danger: dangerAnimation
 };

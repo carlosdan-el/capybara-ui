@@ -1,11 +1,8 @@
 import React, { ComponentProps, useMemo } from "react";
 
-export interface TableProps extends ComponentProps<'table'> {
-    fixed?: boolean
-}
+export interface TableProps extends ComponentProps<'table'> { }
 
 export function Table({
-    fixed = false,
     children,
     ...props
 }: TableProps) {
@@ -50,7 +47,8 @@ export function TableCell({ children, ...props }: TableCellProps) {
         const values = [
             'py-4',
             'px-6',
-            'whitespace-nowrap'
+            'whitespace-nowrap',
+            'text-zinc-900'
         ];
 
         return values.join(' ');
@@ -84,8 +82,8 @@ export function TableHead({ children, ...props }: TableHeadProps) {
             'px-6',
             'whitespace-nowrap',
             'font-normal',
-            'first:rounded-s-xl',
-            'last:rounded-e-xl'
+            'first:rounded-s-lg',
+            'last:rounded-e-lg'
         ];
 
         return values.join(' ');
@@ -106,7 +104,7 @@ export function TableHeader({ children, ...props }: TableHeaderProps) {
 
         const values = [
             'text-zinc-500',
-            'capitalize',
+            'uppercase',
             'bg-zinc-100',
             'whitespace-nowrap'
         ];
