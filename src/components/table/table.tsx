@@ -1,4 +1,5 @@
-import React, { ComponentProps, useMemo } from "react";
+import React, { ComponentProps } from "react";
+import { cn } from "../../lib/utils";
 
 export interface TableProps extends ComponentProps<'table'> { }
 
@@ -6,22 +7,15 @@ export function Table({
     children,
     ...props
 }: TableProps) {
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const values = [
-            'w-full',
-            'text-sm',
-            'text-left',
-            'text-zinc-600'
-        ];
-
-        return values.join(' ');
-    }, []);
-
     return (
-        <div className="w-full overflow-x-auto">
-            <table {...props} className={classes}>
+        <div className="w-full overflow-x-auto my-4">
+            <table {...props} className={cn(
+                'w-full',
+                'text-sm',
+                'text-left',
+                'text-zinc-600',
+                props.className
+            )}>
                 {children}
             </table>
         </div>
@@ -41,21 +35,14 @@ export function TableBody({ children, ...props }: TableBodyProps) {
 export interface TableCellProps extends ComponentProps<'td'> { }
 
 export function TableCell({ children, ...props }: TableCellProps) {
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const values = [
+    return (
+        <td {...props} className={cn(
             'py-4',
             'px-6',
             'whitespace-nowrap',
-            'text-zinc-900'
-        ];
-
-        return values.join(' ');
-    }, [props]);
-
-    return (
-        <td {...props} className={classes}>
+            'text-zinc-900',
+            props.className
+        )}>
             {children}
         </td>
     );
@@ -74,23 +61,16 @@ export function TableFooter({ children, ...props }: TableFooterProps) {
 export interface TableHeadProps extends ComponentProps<'th'> { }
 
 export function TableHead({ children, ...props }: TableHeadProps) {
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const values = [
+    return (
+        <th {...props} className={cn(
             'py-3',
             'px-6',
             'whitespace-nowrap',
             'font-normal',
             'first:rounded-s-lg',
-            'last:rounded-e-lg'
-        ];
-
-        return values.join(' ');
-    }, [props]);
-
-    return (
-        <th {...props} className={classes}>
+            'last:rounded-e-lg',
+            props.className
+        )}>
             {children}
         </th>
     );
@@ -99,20 +79,14 @@ export function TableHead({ children, ...props }: TableHeadProps) {
 export interface TableHeaderProps extends ComponentProps<'thead'> { }
 
 export function TableHeader({ children, ...props }: TableHeaderProps) {
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const values = [
+    return (
+        <thead {...props} className={cn(
             'text-zinc-500',
             'uppercase',
             'bg-zinc-100',
-            'whitespace-nowrap'
-        ];
-
-        return values.join(' ');
-    }, [props]);
-    return (
-        <thead {...props} className={classes}>
+            'whitespace-nowrap',
+            props.className
+        )}>
             {children}
         </thead>
     );
@@ -121,16 +95,11 @@ export function TableHeader({ children, ...props }: TableHeaderProps) {
 export interface TableRowProps extends ComponentProps<'tr'> { }
 
 export function TableRow({ children, ...props }: TableRowProps) {
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const values = ['[&:not(:last-child)]:border-b'];
-
-        return values.join(' ');
-    }, [props]);
-
     return (
-        <tr {...props} className={classes}>
+        <tr {...props} className={cn(
+            '[&:not(:last-child)]:border-b',
+            props.className
+        )}>
             {children}
         </tr>
     );
