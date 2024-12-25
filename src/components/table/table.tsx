@@ -91,6 +91,7 @@ export function TableHeader({ children, ...props }: TableHeaderProps) {
             'uppercase',
             'bg-zinc-100',
             'whitespace-nowrap',
+            'text-xs',
             props.className
         )}>
             {children}

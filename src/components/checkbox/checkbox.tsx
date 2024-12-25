@@ -29,7 +29,7 @@ export function Checkbox({
                     'focus:ring-2',
                     'dark:bg-gray-700',
                     'dark:border-gray-600',
-                    { 'rounded-xl': !rounded },
+                    { 'rounded': !rounded },
                     { 'rounded-full': rounded },
                     'disabled:opacity-50',
                     { 'hidden': hidden },

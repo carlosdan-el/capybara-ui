@@ -4,8 +4,9 @@ import { TextArea } from './text-area';
 
 const DefaultTextArea = () => {
     const [value, setValue] = useState('Lorem ipsum dolor sit amet consectetur adipisicing elit. At, delectus perferendis! Nulla, recusandae facilis optio sit ullam facere nisi enim natus, consectetur cupiditate sequi, voluptas sint at laborum quisquam adipisci.');
+    
     return (
-        <TextArea disabled value={value} onChange={e => setValue(e.target.value)} />
+        <TextArea value={value} onChange={e => setValue(e.target.value)} />
     );
 }
 
