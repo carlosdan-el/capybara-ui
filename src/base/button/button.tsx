@@ -1,5 +1,6 @@
 import React, { ComponentProps, useMemo } from "react";
 import Colors from "../../utils/colors";
+import { cn } from "../../lib/utils";
 
 type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type ButtonEmphasis = 'high' | 'medium' | 'low' | 'none';
@@ -130,39 +131,32 @@ export function Button({
     size = 'md',
     emphasis = 'high',
     rounded = 'md',
+    className,
     ...props
 }: ButtonProps) {
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const values = [
-            'flex',
-            'items-center',
-            'justify-center', 'flex-nowrap',
-            'whitespace-nowrap',
-            'focus:outline-none',
-            'focus:ring-4',
-            'font-medium',
-            'capitalize',
-            'transition-colors',
-            'disabled:cursor-not-allowed',
-            'disabled:opacity-50',
-            'disabled:pointer-events-none'
-        ];
-
-        values.push(sizeClasses[size]);
-        values.push(colorClasses[emphasis][props.color]);
-        values.push(radiusClasses[rounded]);
-
-        if (props.disabled) {
-            values.push('');
-        }
-
-        return values.join(' ');
-    }, [props, size, emphasis, rounded]);
-
     return (
-        <button type={type ?? 'button'} className={classes} {...props}>
+        <button
+            type={type ?? 'button'}
+            className={cn(
+                'flex',
+                'items-center',
+                'justify-center', 'flex-nowrap',
+                'whitespace-nowrap',
+                'focus:outline-none',
+                'focus:ring-4',
+                'font-medium',
+                'capitalize',
+                'transition-colors',
+                'disabled:cursor-not-allowed',
+                'disabled:opacity-50',
+                'disabled:pointer-events-none',
+                sizeClasses[size],
+                colorClasses[emphasis][props.color],
+                radiusClasses[rounded],
+                className
+            )}
+            {...props}
+        >
             {props.children}
         </button>
     );
