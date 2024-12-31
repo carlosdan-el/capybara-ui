@@ -1,4 +1,5 @@
-import React, { ComponentProps, useEffect, useMemo, useRef } from "react";
+import React, { ComponentProps, useEffect, useRef } from "react";
+import { cn } from "../../lib/utils";
 
 const MIN_HEIGHT = 62;
 
@@ -8,33 +9,6 @@ export interface TextAreaProps extends ComponentProps<'textarea'> {
 
 export function TextArea({ onChange, ...props }: TextAreaProps) {
     const textAreaElement = useRef<HTMLTextAreaElement | null>(null);
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const defaultValues = [
-            'w-full',
-            'border',
-            'text-sm',
-            'rounded-xl',
-            'block',
-            'bg-gray-50',
-            'border-gray-300',
-            'hover:border-blue-500',
-            'focus:bg-gray-50',
-            'focus:ring-blue-500',
-            'focus:border-blue-500',
-            'outline-blue-500',
-            'disabled:bg-gray-100',
-            'disabled:border-transparent',
-            'disabled:resize-none'
-        ];
-
-        if (props.disabled || props.readOnly) {
-            defaultValues.push('resize-none');
-        }
-
-        return defaultValues.join(' ');
-    }, []);
     const onChangeValue = (element: React.ChangeEvent<HTMLTextAreaElement>) => {
         const textArea: HTMLTextAreaElement | null = textAreaElement.current;
         if (textArea && textArea.scrollHeight > MIN_HEIGHT) {
@@ -56,7 +30,24 @@ export function TextArea({ onChange, ...props }: TextAreaProps) {
     return (
         <textarea
             ref={textAreaElement}
-            className={classes}
+            className={cn(
+                'w-full',
+                'border',
+                'text-sm',
+                'rounded-xl',
+                'block',
+                'bg-gray-50',
+                'border-gray-300',
+                'hover:border-blue-500',
+                'focus:bg-gray-50',
+                'focus:ring-blue-500',
+                'focus:border-blue-500',
+                'outline-blue-500',
+                'disabled:bg-gray-100',
+                'disabled:border-transparent',
+                'disabled:resize-none',
+                'read-only:resize-none'
+            )}
             onChange={onChangeValue}
             style={{ minHeight: `${MIN_HEIGHT}px` }}
             {...props}
