@@ -13,6 +13,8 @@ export const NotificationProvider = (
     const [notifications, setNotifications] = useState<ToastProps[]>([]);
     const addNotification = useCallback((notification: ToastProps) =>
         setNotifications(notifications => [...notifications, notification]), []);
+    const removeNotification = useCallback((index: number) =>
+        setNotifications(notifications => notifications.filter((_, i) => i !== index)), []);
 
     useEffect(() => {
         const notificationLength = notifications.length;
@@ -33,7 +35,9 @@ export const NotificationProvider = (
                     <Toast
                         key={index}
                         type={notification.type}
+                        title={notification.title}
                         message={notification.message}
+                        onRemove={() => removeNotification(index)}
                     />
                 ))}
             </div>

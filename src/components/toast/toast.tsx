@@ -7,7 +7,9 @@ import dangerAnimation from './danger-animation.json';
 
 export interface ToastProps {
     type: 'info' | 'success' | 'warning' | 'danger'
+    title: string
     message: string
+    onRemove?: () => void
 }
 
 const ANIMATIONS = {
@@ -17,10 +19,15 @@ const ANIMATIONS = {
     danger: dangerAnimation
 };
 
-export const Toast: FC<ToastProps> = ({ type = 'info', message = '' }: ToastProps) => {
+export const Toast: FC<ToastProps> = ({
+    type,
+    title,
+    message
+}: ToastProps) => {
     const animationData = useMemo(() => ANIMATIONS[type], [type]);
+
     return (
-        <div className="flex items-center w-full max-w-sm p-4 rtl:space-x-reverse text-gray-500 bg-white rounded-lg shadow-lg" role="alert">
+        <div className="w-full max-w-sm p-4 bg-white shadow-xl rounded-xl flex space-x-4">
             <Lottie
                 loop
                 animationData={animationData}
@@ -28,7 +35,10 @@ export const Toast: FC<ToastProps> = ({ type = 'info', message = '' }: ToastProp
                 style={{ width: 28, height: 28 }}
                 rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
             />
-            <div className="ps-4 text-sm font-normal">{message}</div>
+            <div className="text-sm font-normal space-y-1">
+                <p className="font-medium text-zinc-800">{title}</p>
+                <p className="text-zinc-500">{message}</p>
+            </div>
         </div>
     );
 };

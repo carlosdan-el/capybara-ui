@@ -18,4 +18,8 @@ const Template: StoryFn<ToastProps> = args => <Toast {...args} />;
 
 export const Default = Template.bind({});
 
-Default.args = { type: 'info', message: 'A new software version is available for download.'};
+Default.args = { 
+    type: 'info', 
+    title: 'Informação', 
+    message: 'A new software version is available for download.'
+};
