@@ -1,9 +1,9 @@
-import React, { FC, useMemo } from 'react';
-import Lottie from 'react-lottie-player';
+import React from 'react';
 import infoAnimation from './info-animation.json';
 import successAnimation from './success-animation.json';
 import warningAnimation from './warning-animation.json';
 import dangerAnimation from './danger-animation.json';
+import LazyLottie from '../lazy-lottie/lazy-lottie';
 
 export interface ToastProps {
     type: 'info' | 'success' | 'warning' | 'danger'
@@ -19,16 +19,16 @@ const ANIMATIONS = {
     danger: dangerAnimation
 };
 
-export const Toast: FC<ToastProps> = ({
+export function Toast({
     type,
     title,
     message
-}: ToastProps) => {
-    const animationData = useMemo(() => ANIMATIONS[type], [type]);
+}: ToastProps) {
+    const animationData = ANIMATIONS[type];
 
     return (
         <div className="w-full max-w-sm p-4 bg-white shadow-xl rounded-xl flex space-x-4">
-            <Lottie
+            <LazyLottie
                 loop
                 animationData={animationData}
                 play
