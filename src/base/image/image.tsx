@@ -1,4 +1,5 @@
 import React, { ComponentProps, useMemo } from "react";
+import { cn } from "../../lib/utils";
 
 export interface ImageProps extends ComponentProps<'img'> {
     imageFullScreenContainerId?: string
@@ -9,23 +10,6 @@ export function Image({
     loading = 'lazy',
     ...props
 }: ImageProps) {
-    const classes = useMemo(() => {
-        if (props.className) return props.className;
-
-        const values = [
-            'w-full',
-            'h-full',
-            'object-cover',
-            'object-center'
-        ];
-
-        if (imageFullScreenContainerId) {
-            values.push('cursor-pointer');
-        }
-
-        return values.join(' ');
-    }, [props]);
-
     const handleFullScreen = (id: string) => {
         const container: HTMLElement | null = document.getElementById(id);
         const img: HTMLImageElement | null = document.querySelector(`#${id} img`);
@@ -41,7 +25,13 @@ export function Image({
         <img
             onClick={imageFullScreenContainerId ? () => handleFullScreen(imageFullScreenContainerId!) : undefined}
             loading={loading}
-            className={classes}
+            className={cn(
+                'w-full',
+                'h-full',
+                'object-cover',
+                'object-center',
+                { 'cursor-pointer': imageFullScreenContainerId },
+            )}
             {...props}
         />
     );
