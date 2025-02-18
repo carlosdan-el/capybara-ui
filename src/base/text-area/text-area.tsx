@@ -1,13 +1,28 @@
 import React, { ComponentProps, useEffect, useRef } from "react";
 import { cn } from "../../lib/utils";
 
+type inputSizes = 'xs' | 'sm' | 'md' | 'lg';
+
 const MIN_HEIGHT = 62;
 
+const sizeClasses: { [key: string]: string } = {
+    xs: 'p-1.5',
+    sm: 'p-2',
+    md: 'p-2.5',
+    lg: 'p-3'
+};
+
 export interface TextAreaProps extends ComponentProps<'textarea'> {
+    size: inputSizes
     maxLength?: number
 }
 
-export function TextArea({ onChange, ...props }: TextAreaProps) {
+export function TextArea({
+    size = 'md',
+    onChange,
+    className,
+    ...props
+}: TextAreaProps) {
     const textAreaElement = useRef<HTMLTextAreaElement | null>(null);
     const onChangeValue = (element: React.ChangeEvent<HTMLTextAreaElement>) => {
         const textArea: HTMLTextAreaElement | null = textAreaElement.current;
@@ -46,7 +61,9 @@ export function TextArea({ onChange, ...props }: TextAreaProps) {
                 'disabled:bg-gray-100',
                 'disabled:border-transparent',
                 'disabled:resize-none',
-                'read-only:resize-none'
+                'read-only:resize-none',
+                sizeClasses[size],
+                className
             )}
             onChange={onChangeValue}
             style={{ minHeight: `${MIN_HEIGHT}px` }}

@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import { TextArea } from './text-area';
+import { TextCounter } from './text-counter';
+import { TextArea } from '../../base/text-area/text-area';
 
 const DefaultTextArea = () => {
+    const maxLength = 500;
     const [value, setValue] = useState('Lorem ipsum dolor sit amet consectetur adipisicing elit. At, delectus perferendis! Nulla, recusandae facilis optio sit ullam facere nisi enim natus, consectetur cupiditate sequi, voluptas sint at laborum quisquam adipisci.');
 
     return (
-        <TextArea value={value} onChange={e => setValue(e.target.value)} size="md" />
+        <>
+            <TextArea
+                maxLength={maxLength}
+                value={value}
+                onChange={e => setValue(e.target.value)}
+                size="md"
+            />
+            <TextCounter
+                currentLength={value.length}
+                maxLength={maxLength}
+            />
+        </>
     );
 }
 
 export default {
-    title: 'Base/Text Area',
+    title: 'Components/Text Counter',
     component: DefaultTextArea
 } as Meta<typeof DefaultTextArea>;
 
