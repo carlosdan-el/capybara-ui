@@ -1,9 +1,24 @@
 import React, { ComponentProps } from 'react';
 import { cn } from '../../lib/utils';
 
-export interface SelectProps extends ComponentProps<'select'> { }
+type inputSizes = 'xs' | 'sm' | 'md' | 'lg';
 
-export function Select({ className, ...props }: SelectProps) {
+export interface SelectProps extends ComponentProps<'select'> {
+    _size: inputSizes
+}
+
+const sizeClasses: { [key: string]: string } = {
+    xs: 'p-1.5',
+    sm: 'p-2',
+    md: 'p-2.5',
+    lg: 'p-3'
+};
+
+export function Select({
+    _size,
+    className,
+    ...props
+}: SelectProps) {
     return (
         <select
             className={cn(
@@ -12,7 +27,6 @@ export function Select({ className, ...props }: SelectProps) {
                 'text-sm',
                 'rounded-xl',
                 'block',
-                'p-2.5',
                 'bg-gray-50',
                 'border-gray-300',
                 'hover:border-blue-500',
@@ -23,6 +37,7 @@ export function Select({ className, ...props }: SelectProps) {
                 'disabled:bg-gray-50',
                 'disabled:text-gray-500',
                 'disabled:border-gray-50',
+                sizeClasses[_size],
                 className
             )}
             {...props}
