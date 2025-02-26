@@ -27,14 +27,16 @@ export function Toast({
     const animationData = ANIMATIONS[type];
 
     return (
-        <div className="w-full max-w-sm p-4 bg-white shadow-xl rounded-xl flex space-x-4">
-            <LazyLottie
-                loop
-                animationData={animationData}
-                play
-                style={{ width: 28, height: 28 }}
-                rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
-            />
+        <div className="w-full max-w-sm p-4 bg-white shadow-xl rounded-xl flex space-x-4 z-50">
+            <div className="w-7 h-7">
+                <LazyLottie
+                    loop
+                    animationData={animationData}
+                    play
+                    style={{ width: 28, height: 28 }}
+                    rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
+                />
+            </div>
             <div className="text-sm font-normal space-y-1">
                 <p className="font-medium text-zinc-800">{title}</p>
                 <p className="text-zinc-500">{message}</p>

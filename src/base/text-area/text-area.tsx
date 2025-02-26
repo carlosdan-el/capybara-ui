@@ -26,12 +26,14 @@ export function TextArea({
     const textAreaElement = useRef<HTMLTextAreaElement | null>(null);
     const onChangeValue = (element: React.ChangeEvent<HTMLTextAreaElement>) => {
         const textArea: HTMLTextAreaElement | null = textAreaElement.current;
-        if (textArea && textArea.scrollHeight > MIN_HEIGHT) {
+
+        if (textArea && textArea.scrollHeight > textArea?.clientHeight) {
             textArea.style.height = `${textArea.scrollHeight + 2}px`;
         }
-        if (textArea && element.target.value.length === 0) {
+        else if (textArea && element.target.value.length === 0) {
             textArea.style.height = `${MIN_HEIGHT + 2}px`;
         }
+
         if (onChange) onChange(element);
     };
 

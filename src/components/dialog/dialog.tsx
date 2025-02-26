@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { Dialog as HeadlessDialog } from '@headlessui/react';
+import {Dialog as HeadlessDialog,  DialogPanel, DialogTitle } from '@headlessui/react';
 import { Button } from '../../base';
 
 export type DialogProps = {
@@ -28,13 +28,13 @@ export const Dialog: FC<DialogProps> = ({
     return (
         <HeadlessDialog
             open={isOpen}
-            onClose={() => onCloseDialog(false)}
+            onClose={() =>  (false)}
             className="relative z-50"
         >
             <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/60 backdrop-blur-lg">
-                <HeadlessDialog.Panel className={`relative w-full ${classes} rounded-xl bg-white shadow p-4 overflow-hidden max-h-[80%]`}>
-                    <HeadlessDialog.Title className="font-medium text-xl">Complete your order</HeadlessDialog.Title>
-                    <div className="w-full overflow-y-scroll my-4 h-[calc(10%-1rem)]">
+                <DialogPanel className={`relative w-full ${classes} rounded-xl bg-white shadow p-4 overflow-hidden max-h-[80%] overflow-y-auto`}>
+                    <DialogTitle className="font-medium text-xl">Complete your order</DialogTitle>
+                    <div className="w-full overflow-y-scroll my-4">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et risus sem. Pellentesque ut libero purus. Aliquam mattis rhoncus neque ac lacinia. Suspendisse pellentesque urna ex, non rhoncus arcu ornare ut. Donec id euismod turpis, non vehicula libero. Quisque porttitor interdum ligula in rutrum. Nullam eget nisi id urna pellentesque porttitor. Suspendisse vehicula dui non sapien consectetur accumsan.
 
                             Nulla ante ante, pulvinar a hendrerit eu, tincidunt ut est. Curabitur a convallis mi. Proin posuere eros in eros lacinia, vitae tincidunt dolor interdum. Cras sagittis dictum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer consequat lobortis iaculis. Nulla ullamcorper placerat lectus, ac posuere mi tincidunt eu. Nullam luctus commodo sem, eu tempor felis lacinia vitae. Fusce tempus diam a tellus faucibus gravida. Nam quis sapien ac quam molestie interdum non quis est. Phasellus vehicula, arcu nec eleifend pharetra, lacus risus dignissim elit, a porttitor justo purus eu enim. Quisque rutrum nisi quis imperdiet scelerisque. Suspendisse potenti. Integer eget sem sagittis, eleifend enim eu, congue tellus. Nulla feugiat commodo sem ac auctor.
@@ -59,7 +59,7 @@ export const Dialog: FC<DialogProps> = ({
                         <Button color="green" emphasis="low">Cancel</Button>
                         <Button color="green">Confirm</Button>
                     </div>
-                </HeadlessDialog.Panel>
+                </DialogPanel>
             </div>
         </HeadlessDialog>
     );
