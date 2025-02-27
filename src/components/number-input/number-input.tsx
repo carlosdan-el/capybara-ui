@@ -7,7 +7,6 @@ const isOnlyNumbers = (value: string): boolean => {
 
 export function NumberInput({
     onChange,
-    value,
     ...props
 }: InputProps) {
     const setAllowedValue = (element: React.ChangeEvent<HTMLInputElement>): void => {
