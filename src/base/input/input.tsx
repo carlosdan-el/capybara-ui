@@ -22,7 +22,6 @@ export function Input({
     return (
         <input
             className={cn(
-                'w-full',
                 'border',
                 'text-sm',
                 'rounded-xl',

@@ -22,7 +22,6 @@ export function Select({
     return (
         <select
             className={cn(
-                'w-full',
                 'border',
                 'text-sm',
                 'rounded-xl',

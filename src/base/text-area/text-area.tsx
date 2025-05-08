@@ -48,7 +48,6 @@ export function TextArea({
         <textarea
             ref={textAreaElement}
             className={cn(
-                'w-full',
                 'border',
                 'text-sm',
                 'rounded-xl',
