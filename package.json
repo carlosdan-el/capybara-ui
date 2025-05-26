@@ -17,8 +17,8 @@
   },
   "author": "Carlos Santos",
   "peerDependencies": {
-    "react": "^16 || ^17 || ^18",
-    "react-dom": "^16 || ^17 || ^18"
+    "react": "^17 || ^18 || ^19",
+    "react-dom": "^17 || ^18 || ^19"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.12",
