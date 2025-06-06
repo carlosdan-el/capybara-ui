@@ -3,7 +3,7 @@ import Colors from '../../utils/colors';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
     type: Colors
-    size: 'md' | 'lg'
+    size: 'xs' | 'sm' | 'md' | 'lg'
     label: string
     badgeStyle: 'dotted' | 'normal'
 }
@@ -83,8 +83,10 @@ const dotStyles = {
     rose: 'bg-rose-600'
 };
 const sizeClasses = {
-    md: 'px-3 py-1',
-    lg: 'px-3.5 py-1.5'
+    xs: 'px-2 py-0.5 text-xs',
+    sm: 'px-2.5 py-0.5 text-sm',
+    md: 'px-3 py-1 text-base',
+    lg: 'px-3.5 py-1.5 text-lg'
 };
 
 export const Badge: FC<BadgeProps> = ({
@@ -96,14 +98,14 @@ export const Badge: FC<BadgeProps> = ({
 }: BadgeProps) => {
     const badgeClasses = useMemo(() => {
         return [
-            'text-xs font-medium rounded-lg capitalize flex items-center max-w-min',
+            'font-medium rounded-lg capitalize flex items-center max-w-min',
             typeClasses[badgeStyle][type],
             sizeClasses[size]
         ].join(' ');
     }, [type, size, badgeStyle]);
     const dotClasses = useMemo(() => {
         return [
-            'w-1.5 h-1.5 rounded-full mr-1',
+            'w-2 h-2 rounded-full mr-2',
             dotStyles[type]
         ].join(' ');
     }, [type]);
